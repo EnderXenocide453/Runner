@@ -24,10 +24,26 @@ namespace RoadBuilding
             } 
         }
 
-        public RoadBlock Build(Vector3 position, Quaternion roattion)
+        public RoadBlock BuildBlock(Vector3 position, Quaternion rotation, RoadBlock parent)
         {
             var factory = GetRandomFactory();
-            return factory.GenerateBlock(position, roattion);
+            var block = factory.GenerateBlock(position, rotation);
+
+            parent.AddChild(block);
+
+            return block;
+        }
+
+        public RoadBlock[] BuildChildBlocks(RoadBlock parent)
+        {
+            RoadBlock[] children = new RoadBlock[parent.Connectors.Length];
+
+            for (int i = 0; i < children.Length; i++) {
+                var connector = parent.Connectors[i];
+                children[i] = BuildBlock(connector.transform.position, connector.transform.rotation, parent);
+            }
+
+            return children;
         }
 
         private RoadBlockFactory GetRandomFactory()
@@ -35,20 +51,20 @@ namespace RoadBuilding
             float randomPoint = Random.value * TotalProbability;
             
             foreach (RoadFactoryWeight weight in _factoryWeights) {
-                if (weight.Weight < randomPoint)
-                    return weight.PatternFactory;
+                if (weight.Weight >= randomPoint)
+                    return weight.RoadFactory;
                 else 
                     randomPoint -= weight.Weight;
             }
 
-            return _factoryWeights[_factoryWeights.Length - 1].PatternFactory;
+            return _factoryWeights[_factoryWeights.Length - 1].RoadFactory;
         }
 
         [Serializable]
         private struct RoadFactoryWeight
         {
             public float Weight;
-            public RoadBlockFactory PatternFactory;
+            public RoadBlockFactory RoadFactory;
         }
     }
 }

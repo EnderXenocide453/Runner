@@ -118,8 +118,10 @@ GameObject:
   m_Component:
   - component: {fileID: 552091024325942895}
   - component: {fileID: 5735530989638245915}
-  - component: {fileID: 7170610661366306490}
   - component: {fileID: 668783751052759926}
+  - component: {fileID: 8529258673047714423}
+  - component: {fileID: 7170610661366306490}
+  - component: {fileID: 1684087959144537600}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -170,6 +172,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &668783751052759926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657588492791466085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1555c94463ad60f4097de7b4065855a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8529258673047714423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657588492791466085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68cc7b6e20eb4d47af3a160002b8daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterRun: {fileID: 7170610661366306490}
+  _activities: {fileID: 8918839355080809924}
+  _characterHealth: {fileID: 1684087959144537600}
+  _characterAnimation: {fileID: 3524016788489991445}
 --- !u!114 &7170610661366306490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +240,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _rotateSpeed: 360
---- !u!114 &668783751052759926
+--- !u!114 &1684087959144537600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,9 +249,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3657588492791466085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1555c94463ad60f4097de7b4065855a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ca681ecc30520b449a43e8ccd618a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 3
 --- !u!1 &7541919550747381874
 GameObject:
   m_ObjectHideFlags: 0

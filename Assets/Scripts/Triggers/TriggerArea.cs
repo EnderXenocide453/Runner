@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Triggers
@@ -7,6 +8,9 @@ namespace Triggers
     {
         [SerializeField] private string[] _targetTagsArray;
         private HashSet<string> _targetTags;
+
+        public event Action onActivated;
+        public event Action onDeactivated;
 
         public HashSet<string> TargetTags
         {
@@ -24,6 +28,7 @@ namespace Triggers
         {
             if (TargetTags.Contains(other.tag)) {
                 Activate(other);
+                onActivated?.Invoke();
             }
         }
 
@@ -31,6 +36,7 @@ namespace Triggers
         {
             if (TargetTags.Contains(other.tag)) {
                 Deactivate(other);
+                onDeactivated?.Invoke();
             }
         }
 

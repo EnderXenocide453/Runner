@@ -7,8 +7,7 @@ namespace InputManagement
 {
     public class CharacterInput : MonoBehaviour
     {
-        private CharacterRun _characterRun;
-        private CharacterActivities _activities;
+        private CharacterHandler _character;
         private InputManager _inputManager;
 
         [Inject]
@@ -16,32 +15,32 @@ namespace InputManagement
         {
             _inputManager = manager;
             _inputManager.onMoveInput += OnCharacterMoveInput;
-        }
 
-        private void Awake()
-        {
-            _characterRun = GetComponent<CharacterRun>();
-            _activities = GetComponentInChildren<CharacterActivities>();
+            _character = GetComponent<CharacterHandler>();
+            _character.onDeath += () =>
+            {
+                enabled = false;
+                _inputManager.enabled = false;
+            };
         }
 
         protected void OnCharacterMoveInput(MoveDirection direction)
         {
             if (direction == MoveDirection.Right || direction == MoveDirection.Left) {
-                _characterRun.TurnTo(direction);
+                _character.CharacterRun.TurnTo(direction);
             }
             else if (direction == MoveDirection.Forward) {
-                _activities.Jump();
+                _character.Activity.Jump();
             }
             else if (direction == MoveDirection.Back) {
-                _activities.Roll();
+                _character.Activity.Roll();
             }
         }
 
         private void Update()
         {
             float deviation = _inputManager.GetDeviation();
-            Debug.Log(deviation);
-            _activities.Deviate(deviation);
+            _character.Activity.Deviate(deviation);
         }
     }
 }

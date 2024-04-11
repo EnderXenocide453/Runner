@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utils;
@@ -21,6 +22,8 @@ namespace Character
 
         private HashSet<MoveDirection> _availableDirections;
         private Vector3 _turnOrigin;
+
+        public event Action onIncorrectTurn;
 
         public float CurrentSpeed
         {
@@ -50,6 +53,7 @@ namespace Character
         {
             if (_availableDirections == null || !_availableDirections.Contains(direction)) {
                 //Обрабатываем врезание в стену
+                onIncorrectTurn?.Invoke();
                 return;
             }
 

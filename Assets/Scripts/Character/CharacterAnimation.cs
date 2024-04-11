@@ -21,6 +21,11 @@ namespace Character
         {
             _animator.SetTrigger("roll");
         }
+
+        public void Death()
+        {
+            _animator.SetTrigger("death");
+        }
     }
 }
 

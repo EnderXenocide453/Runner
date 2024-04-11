@@ -12,6 +12,11 @@ namespace Character
         public event Action<int> onDamageReceived;
         public event Action<int> onHealingReceived;
 
+        private void Awake()
+        {
+            _currentHealth = _maxHealth;
+        }
+
         public void GetHealing(int healAmount)
         {
             onHealingReceived?.Invoke(healAmount);
@@ -28,7 +33,7 @@ namespace Character
 
         private void BecomeInvincible()
         {
-            throw new NotImplementedException();
+            //Неуязвимость
         }
 
         public void PermaDeath()

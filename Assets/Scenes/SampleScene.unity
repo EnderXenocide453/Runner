@@ -154,11 +154,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roadBuilder:
     _factoryWeights:
-    - Weight: 1
+    - Weight: 4
       RoadFactory: {fileID: 11400000, guid: 49f63b0bc8b2e6949b3b75827d077333, type: 2}
-    - Weight: 0.5
+    - Weight: 1
       RoadFactory: {fileID: 11400000, guid: 19f2cee3be689e44e93098c531ace46a, type: 2}
-    - Weight: 0.5
+    - Weight: 1
       RoadFactory: {fileID: 11400000, guid: 525e5da21af35f3488aa9604d8aace80, type: 2}
     - Weight: 0
       RoadFactory: {fileID: 11400000, guid: 13365b101eba7c642bd14e4c5f0d91c2, type: 2}
@@ -393,7 +393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825172951}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.204747, y: 0.000000029371, z: -0.0000000061437806, w: 0.97881496}
+  m_LocalRotation: {x: 0.20474699, y: -0.0000000034221745, z: 7.1584466e-10, w: 0.97881496}
   m_LocalPosition: {x: 0, y: 1.61, z: -3.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -582,7 +582,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.204747, y: 0.000000029371, z: -0.0000000061437806, w: 0.97881496}
+  m_LocalRotation: {x: 0.20474699, y: -0.0000000034221745, z: 7.1584466e-10, w: 0.97881496}
   m_LocalPosition: {x: 0, y: 1.61, z: -3.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -7,12 +7,14 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float _speedIncreaseDistance = 1000;
     [SerializeField] private AnimationCurve _speedCurve;
 
-    [SerializeField] private float _currentDistance;
+    [SerializeField] private float _rotateSpeed = 180;
+
+    private float _currentDistance;
+    private bool _allowRotation;
     private Vector3 _oldPosition;
     private Rigidbody _body;
     private Vector3 _direction = Vector3.forward;
 
-    public Vector3 Direction { set { _direction = value; } }
     public float CurrentSpeed
     {
         get
@@ -32,9 +34,16 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CalculateDistance();
-
         _body.MovePosition(_direction * CurrentSpeed * Time.fixedDeltaTime + _body.position);
+        CalculateDistance();
+        LookAtDirection();
+    }
+
+    public void TurnTo(Quaternion angle, Vector3 origin)
+    {
+        _direction = angle * _direction;
+        transform.position = origin;
+        _allowRotation = true;
     }
 
     private void CalculateDistance()
@@ -44,5 +53,19 @@ public class CharacterMovement : MonoBehaviour
 
         _currentDistance += Vector3.Distance(_oldPosition, transform.position);
         _oldPosition = transform.position;
+    }
+
+    private void LookAtDirection()
+    {
+        if (!_allowRotation)
+            return;
+
+        var currQuaternion = Quaternion.LookRotation(_direction);
+        if (currQuaternion == transform.rotation) {
+            _allowRotation = false;
+            return;
+        }
+
+        _body.MoveRotation(Quaternion.RotateTowards(transform.rotation, currQuaternion, _rotateSpeed * Time.fixedDeltaTime));
     }
 }

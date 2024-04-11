@@ -22,14 +22,14 @@ namespace Triggers
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_targetTags.Contains(other.tag)) {
+            if (TargetTags.Contains(other.tag)) {
                 Activate(other);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (_targetTags.Contains(other.tag)) {
+            if (TargetTags.Contains(other.tag)) {
                 Deactivate(other);
             }
         }

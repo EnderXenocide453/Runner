@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Straight Road Factory
   m_EditorClassIdentifier: 
   _roadBlockPrefabs:
-  - {fileID: 3595507865087437682, guid: bbab2037d98aa4248b7e16754b363291, type: 3}
+  - {fileID: 2070326230873847329, guid: 873b4f35b48041845b37ff582a01b4ab, type: 3}

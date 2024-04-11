@@ -4,26 +4,40 @@ using UnityEngine;
 
 namespace RoadBuilding
 {
+    [RequireComponent(typeof(RoadBlockAnimation))]
     public class RoadBlock : MonoBehaviour
     {
         [SerializeField] private Transform[] _connectors;
 
         private RoadBlock _parent;
         private HashSet<RoadBlock> _children = new HashSet<RoadBlock>();
+        private RoadBlockAnimation _animation;
 
         public Transform[] Connectors => _connectors;
         public HashSet<RoadBlock> Children => _children;
 
         public event Action<RoadBlock> onActivated;
 
+        private void Start()
+        {
+            _animation = GetComponent<RoadBlockAnimation>();
+            Appear();
+        }
+
         public void Appear()
         {
             //Появление
+            _animation.PlayAppearAnimation();
         }
 
         public void Disappear()
         {
             //Исчезновение
+            _animation.PlayDisappearAnimation();
+        }
+
+        public void OnDisappeared()
+        {
             Destroy(gameObject);
         }
 
@@ -44,12 +58,6 @@ namespace RoadBuilding
         {
             _children.Remove(child);
             child._parent = null;
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            //Проверка что вошёл игрок
-            OnActivated();
         }
     }
 }

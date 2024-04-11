@@ -9,7 +9,6 @@ namespace RoadBuilding
 
         [SerializeField] private RoadBuilder _roadBuilder;
         [SerializeField] private RoadBlock _initBlock;
-        [SerializeField] private float delay = 1;
 
         private HashSet<RoadBlock> _lastBlocks = new HashSet<RoadBlock>();
         private RoadBlock _activeBlock;

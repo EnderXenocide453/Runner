@@ -6,7 +6,7 @@ namespace Triggers
 {
     public class TurnTrigger : TriggerArea
     {
-        [SerializeField] private Direction[] _directions = new Direction[] {Direction.Forward};
+        [SerializeField] private MoveDirection[] _directions = new MoveDirection[] {MoveDirection.Forward};
 
         protected override void Activate(Collider other)
         {

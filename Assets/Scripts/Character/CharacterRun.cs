@@ -19,7 +19,7 @@ namespace Character
         private Rigidbody _body;
         private Vector3 _direction = Vector3.forward;
 
-        private HashSet<Direction> _availableDirections;
+        private HashSet<MoveDirection> _availableDirections;
         private Vector3 _turnOrigin;
 
         public float CurrentSpeed
@@ -46,14 +46,14 @@ namespace Character
             LookAtDirection();
         }
 
-        public void TurnTo(Direction direction)
+        public void TurnTo(MoveDirection direction)
         {
             if (_availableDirections == null || !_availableDirections.Contains(direction)) {
                 //Обрабатываем врезание в стену
                 return;
             }
 
-            Quaternion angle = Directions.GetRotationFromDirection(direction);
+            Quaternion angle = Utils.Utils.GetRotationFromDirection(direction);
 
             _direction = angle * _direction;
             transform.position = _turnOrigin;
@@ -62,9 +62,9 @@ namespace Character
             DisableTurn();
         }
 
-        public void EnableTurn(Direction[] directions, Vector3 origin)
+        public void EnableTurn(MoveDirection[] directions, Vector3 origin)
         {
-            _availableDirections = new HashSet<Direction>(directions);
+            _availableDirections = new HashSet<MoveDirection>(directions);
             _turnOrigin = origin;
 
             Debug.Log($"Enabled {directions}");

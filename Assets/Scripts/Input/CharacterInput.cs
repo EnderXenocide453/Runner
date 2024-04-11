@@ -24,15 +24,15 @@ namespace InputManagement
             _activities = GetComponentInChildren<CharacterActivities>();
         }
 
-        protected void OnCharacterMoveInput(Direction direction)
+        protected void OnCharacterMoveInput(MoveDirection direction)
         {
-            if (direction == Direction.Right || direction == Direction.Left) {
+            if (direction == MoveDirection.Right || direction == MoveDirection.Left) {
                 _characterRun.TurnTo(direction);
             }
-            else if (direction == Direction.Forward) {
+            else if (direction == MoveDirection.Forward) {
                 _activities.Jump();
             }
-            else if (direction == Direction.Back) {
+            else if (direction == MoveDirection.Back) {
                 _activities.Roll();
             }
         }
@@ -40,7 +40,6 @@ namespace InputManagement
         private void FixedUpdate()
         {
             float deviation = _inputManager.GetDeviation();
-            Debug.Log(deviation);
             Deviate(deviation);
         }
 

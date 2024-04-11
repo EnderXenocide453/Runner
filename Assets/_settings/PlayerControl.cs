@@ -29,7 +29,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""TouchContact"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""3c53fbeb-1675-4df1-9f54-8e56e9c211a6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

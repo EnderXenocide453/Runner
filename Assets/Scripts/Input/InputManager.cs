@@ -40,8 +40,7 @@ namespace InputManagement
         public float GetDeviation()
         {
             //if (SystemInfo.supportsGyroscope) {
-                Debug.Log($"Gyro: {Input.gyro.attitude.eulerAngles}");
-                return Input.gyro.attitude.eulerAngles.z;
+                return Input.acceleration.x;
             //}
 
             //float deviation = _playerControl.PCmap.MousePosition.ReadValue<Vector2>().x;

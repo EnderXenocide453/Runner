@@ -37,15 +37,11 @@ namespace InputManagement
             }
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             float deviation = _inputManager.GetDeviation();
-            Deviate(deviation);
-        }
-
-        protected void Deviate(float value)
-        {
-            _activities.Deviate(value);
+            Debug.Log(deviation);
+            _activities.Deviate(deviation);
         }
     }
 }

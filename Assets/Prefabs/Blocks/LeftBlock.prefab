@@ -292,6 +292,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurnTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 5159766363360063006, guid: c9a0032768d3d554e94760351a921f41, type: 3}
+      propertyPath: _directions.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8444775632909121108, guid: c9a0032768d3d554e94760351a921f41, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

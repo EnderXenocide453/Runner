@@ -160,7 +160,7 @@ MonoBehaviour:
       RoadFactory: {fileID: 11400000, guid: 19f2cee3be689e44e93098c531ace46a, type: 2}
     - Weight: 1
       RoadFactory: {fileID: 11400000, guid: 525e5da21af35f3488aa9604d8aace80, type: 2}
-    - Weight: 0
+    - Weight: 0.5
       RoadFactory: {fileID: 11400000, guid: 13365b101eba7c642bd14e4c5f0d91c2, type: 2}
   _initBlock: {fileID: 1995695217}
 --- !u!4 &274906571
@@ -676,6 +676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933186c288b2da24c96afa02cbcf842a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mouseSensitivity: 1
 --- !u!114 &1460362725
 MonoBehaviour:
   m_ObjectHideFlags: 0

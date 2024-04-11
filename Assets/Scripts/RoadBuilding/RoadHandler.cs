@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace RoadBuilding
@@ -32,24 +29,12 @@ namespace RoadBuilding
             }
         }
 
-        [ContextMenu("Test")]
-        public void StartAutoTest()
-        {
-            StartCoroutine(AutoActivate());
-        }
-
-        private IEnumerator AutoActivate()
-        {
-            while(true) {
-                yield return new WaitForSeconds(delay);
-                var blocks = new RoadBlock[_activeBlock.Children.Count];
-                _activeBlock.Children.CopyTo(blocks);
-                blocks[0].OnActivated();
-            }
-        }
-
         private void OnBlockActivated(RoadBlock block)
         {
+            //Страховка от повторной активации
+            if (ReferenceEquals(_activeBlock, block))
+                return;
+
             DeactivateBlock(_activeBlock);
 
             _activeBlock = block;

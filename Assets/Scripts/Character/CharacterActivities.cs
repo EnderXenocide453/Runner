@@ -31,7 +31,7 @@ namespace Character
         {
             _currentDeviation = Mathf.Lerp(_currentDeviation, deviation, _deviationSharpness);
             float displayDeviation = Mathf.Clamp(_currentDeviation, -_maxDeviation, _maxDeviation);
-            Debug.Log(displayDeviation);
+            
             transform.localPosition = new Vector3(displayDeviation, transform.localPosition.y, transform.localPosition.z);
         }
     }

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Triggers
 {
-    public abstract class TriggerArea : MonoBehaviour
+    public class TriggerArea : MonoBehaviour
     {
         [SerializeField] private string[] _targetTagsArray;
         private HashSet<string> _targetTags;
 
-        public event Action onActivated;
-        public event Action onDeactivated;
+        [SerializeField] private UnityEvent onActivated;
+        [SerializeField] private UnityEvent onDeactivated;
 
         public HashSet<string> TargetTags
         {
@@ -40,7 +40,7 @@ namespace Triggers
             }
         }
 
-        protected abstract void Activate(Collider other);
-        protected abstract void Deactivate(Collider other);
+        protected virtual void Activate(Collider other) { }
+        protected virtual void Deactivate(Collider other) { }
     }
 }

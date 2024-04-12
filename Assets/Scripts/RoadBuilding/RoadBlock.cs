@@ -1,17 +1,19 @@
-﻿using System;
+﻿using Animations;
+using LevelObjects;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RoadBuilding
 {
-    [RequireComponent(typeof(RoadBlockAnimation))]
-    public class RoadBlock : MonoBehaviour
+    [RequireComponent(typeof(AppearableObjectAnimation))]
+    public class RoadBlock : MonoBehaviour, IAppearableObject
     {
         [SerializeField] private Transform[] _connectors;
 
         private RoadBlock _parent;
         private HashSet<RoadBlock> _children = new HashSet<RoadBlock>();
-        private RoadBlockAnimation _animation;
+        private AppearableObjectAnimation _animation;
 
         public Transform[] Connectors => _connectors;
         public HashSet<RoadBlock> Children => _children;
@@ -20,7 +22,7 @@ namespace RoadBuilding
 
         private void Start()
         {
-            _animation = GetComponent<RoadBlockAnimation>();
+            _animation = GetComponent<AppearableObjectAnimation>();
             Appear();
         }
 

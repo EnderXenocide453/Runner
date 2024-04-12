@@ -11,7 +11,7 @@ namespace Character.Abilities
         [SerializeField] private float _rayRadius = 0.5f;
         [SerializeField] private LayerMask _rayMask;
         [SerializeField] private float _fadeDuration = 1;
-        [SerializeField] private ShootHitBehaviour[] _hitBehaviours;
+        [SerializeField] private CollisionBehaviour[] _hitBehaviours;
         private LineRenderer _lineRenderer;
         private Coroutine _drawCoroutine;
 

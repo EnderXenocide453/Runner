@@ -22,24 +22,34 @@ namespace InputManagement
             Debug.Log($"Device: {SystemInfo.deviceType}");
 
             if (SystemInfo.deviceType == DeviceType.Handheld) {
-                _playerControl.TouchMap.Enable();
-
-                _playerControl.TouchMap.TouchContact.started += StartTouch;
-                _playerControl.TouchMap.TouchContact.canceled += EndTouch;
-
-                _swipeDetector.onSwipeDetected += HandleMoveInput;
-
-                _playerControl.TouchMap.UseAbility.started += UseAbility;
+                InitDesktop();
             } else if (SystemInfo.deviceType == DeviceType.Desktop) {
-                _playerControl.PCmap.Enable();
-
-                _playerControl.PCmap.Jump.started += (ctx) => { HandleMoveInput(MoveDirection.Forward); };
-                _playerControl.PCmap.Roll.started += (ctx) => { HandleMoveInput(MoveDirection.Back); };
-                _playerControl.PCmap.Left.started += (ctx) => { HandleMoveInput(MoveDirection.Left); };
-                _playerControl.PCmap.Right.started += (ctx) => { HandleMoveInput(MoveDirection.Right); };
-
-                _playerControl.PCmap.UseAbility.started += UseAbility;
+                InitHandheld();
             }
+        }
+
+        private void InitHandheld()
+        {
+            _playerControl.PCmap.Enable();
+
+            _playerControl.PCmap.Jump.started += (ctx) => { HandleMoveInput(MoveDirection.Forward); };
+            _playerControl.PCmap.Roll.started += (ctx) => { HandleMoveInput(MoveDirection.Back); };
+            _playerControl.PCmap.Left.started += (ctx) => { HandleMoveInput(MoveDirection.Left); };
+            _playerControl.PCmap.Right.started += (ctx) => { HandleMoveInput(MoveDirection.Right); };
+
+            _playerControl.PCmap.UseAbility.started += UseAbility;
+        }
+
+        private void InitDesktop()
+        {
+            _playerControl.TouchMap.Enable();
+
+            _playerControl.TouchMap.TouchContact.started += StartTouch;
+            _playerControl.TouchMap.TouchContact.canceled += EndTouch;
+
+            _swipeDetector.onSwipeDetected += HandleMoveInput;
+
+            _playerControl.TouchMap.UseAbility.started += UseAbility;
         }
 
         private void UseAbility(InputAction.CallbackContext obj)
@@ -90,35 +100,6 @@ namespace InputManagement
         {
             _playerControl.TouchMap.Disable();
             _playerControl.PCmap.Disable();
-        }
-    }
-
-    [Serializable]
-    public class SwipeDetector
-    {
-        [SerializeField] float _swipeMaxTime = 2f;
-        [SerializeField] float _swipeMinLenght = 0.5f;
-
-        private float _startTime;
-        private Vector2 _startPosition;
-
-        public event Action<MoveDirection> onSwipeDetected;
-
-        public void BeginDetection(Vector2 position, float time)
-        {
-            _startPosition = position;
-            _startTime = time;
-        }
-
-        public void EndDetection(Vector2 position, float time)
-        {
-            float distance = Vector2.Distance(_startPosition, position) / Screen.width;
-            Debug.Log(distance);
-            if (time - _startTime > _swipeMaxTime || Vector2.Distance(_startPosition, position) < _swipeMinLenght)
-                return;
-
-            MoveDirection direction = Utils.Utils.GetDirectionFromVector(position - _startPosition);
-            onSwipeDetected(direction);
         }
     }
 }

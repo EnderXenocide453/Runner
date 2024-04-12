@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character.Abilities
 {
-    public class DestroyBehaviour : ShootHitBehaviour
+    public class DestroyBehaviour : CollisionBehaviour
     {
         public override void OnHit(Collider other)
         {

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ExampleFactory
   m_EditorClassIdentifier: 
   _levelObjects:
-  - Prefab: {fileID: 254645460577259454, guid: b8aaa53bd00639c43b4351dc17c60603, type: 3}
+  - Prefab: {fileID: 3459957942705766767, guid: f0ad30b1e9780ce4bbf907824686f108, type: 3}
     IsSolid: 0
-  - Prefab: {fileID: 254645460577259454, guid: 51afc40b9019e054a8a382ee0421f69f, type: 3}
+  - Prefab: {fileID: 297670435253760192, guid: a71fec5cc33594f48b24f0f6df944ef4, type: 3}
     IsSolid: 0
-  - Prefab: {fileID: 254645460577259454, guid: a6c81004e33d5fe44a792a37fcca394e, type: 3}
+  - Prefab: {fileID: 9057031497760944660, guid: 0a8af4f4743c45246bc427ea6b595a79, type: 3}
     IsSolid: 1

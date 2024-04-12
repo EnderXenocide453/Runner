@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoints: []
+  _levelObjectFactory: {fileID: 11400000, guid: 744a81ab14062e247ba2065a54183e23, type: 2}
 --- !u!1 &7330430924697313141
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,10 +260,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onAppear:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5353594866765805978}
+        m_TargetAssemblyTypeName: LevelObjects.LevelObjectSpawner, Assembly-CSharp
+        m_MethodName: Appear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDisappear:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5353594866765805978}
+        m_TargetAssemblyTypeName: LevelObjects.LevelObjectSpawner, Assembly-CSharp
+        m_MethodName: Disappear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &8350889514306440328
 Animator:
   serializedVersion: 5

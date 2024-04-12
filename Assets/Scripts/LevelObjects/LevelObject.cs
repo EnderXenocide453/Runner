@@ -1,4 +1,5 @@
 ﻿using Animations;
+using System;
 using UnityEngine;
 
 namespace LevelObjects
@@ -8,24 +9,37 @@ namespace LevelObjects
     {
         private AppearableObjectAnimation m_Animation;
 
+        public event Action onDestroyed;
+
         private void Awake()
         {
             m_Animation = GetComponent<AppearableObjectAnimation>();
         }
 
+        private void Start()
+        {
+            Appear();
+        }
+
         public void Appear()
         {
-            m_Animation.PlayAppearAnimation();
+            //m_Animation.PlayAppearAnimation();
         }
 
         public void Disappear()
         {
-            m_Animation.PlayDisappearAnimation();
+            Destroy();
+            //m_Animation.PlayDisappearAnimation();
         }
 
         public void Destroy()
         {
             Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            onDestroyed?.Invoke();
         }
     }
 }

@@ -47,7 +47,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""UseAbility"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""bcb1534b-9ce5-4548-9c79-e05e5f108094"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -82,7 +82,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2d86c196-3bd4-4b3d-b37b-e805d07e9a75"",
                     ""path"": ""<Touchscreen>/touch*/Press"",
-                    ""interactions"": """",
+                    ""interactions"": ""MultiTap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""UseAbility"",

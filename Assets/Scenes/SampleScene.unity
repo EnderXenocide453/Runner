@@ -393,7 +393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825172951}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38346493, y: 0.000000015891047, z: -0.0000000065980426, w: 0.9235555}
+  m_LocalRotation: {x: 0.38346493, y: -0.000000015891048, z: 0.0000000065980434, w: 0.9235555}
   m_LocalPosition: {x: 0, y: 2.96, z: -2.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -582,7 +582,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38346493, y: 0.000000015891047, z: -0.0000000065980426, w: 0.9235555}
+  m_LocalRotation: {x: 0.38346493, y: -0.000000015891048, z: 0.0000000065980434, w: 0.9235555}
   m_LocalPosition: {x: 0, y: 2.96, z: -2.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -785,10 +785,6 @@ PrefabInstance:
     - target: {fileID: 3657588492791466085, guid: f18e7ce81de240c459ae8866b4149dce, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679661554150109110, guid: f18e7ce81de240c459ae8866b4149dce, type: 3}
-      propertyPath: _chargesCount
-      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

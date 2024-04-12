@@ -19,3 +19,5 @@ MonoBehaviour:
     IsSolid: 0
   - Prefab: {fileID: 9057031497760944660, guid: 0a8af4f4743c45246bc427ea6b595a79, type: 3}
     IsSolid: 1
+  - Prefab: {fileID: 8267805694777299001, guid: cabc3b1394db89c418c8739064d3b136, type: 3}
+    IsSolid: 0

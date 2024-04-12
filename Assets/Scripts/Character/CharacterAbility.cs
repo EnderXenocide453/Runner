@@ -11,6 +11,7 @@ namespace Character
         [SerializeField] private int _chargesCount = 0;
 
         public event Action onAbilityExecuted;
+        public event Action onRecharged;
 
         public void Execute()
         {
@@ -20,6 +21,15 @@ namespace Character
             _chargesCount--;
             _ability.Execute();
             onAbilityExecuted?.Invoke();
+        }
+
+        public void AddCharge()
+        {
+            if (_chargesCount >= _maxChargesCount)
+                return;
+
+            _chargesCount++;
+            onRecharged?.Invoke();
         }
     }
 }

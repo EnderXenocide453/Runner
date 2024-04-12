@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2741350442584884869}
   - component: {fileID: -5736902553123621164}
-  - component: {fileID: -1608213463651046921}
+  - component: {fileID: 3416651321137077847}
+  - component: {fileID: 5775689137751618320}
   m_Layer: 0
   m_Name: DeathWall
   m_TagString: Untagged
@@ -54,7 +55,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-1608213463651046921
+--- !u!114 &3416651321137077847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,10 +64,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 6673419274430969277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e6d92d054c935b449305f8870f1ade4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e1608a46e72cc541916baf459083179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTagsArray:
   - Player
+  onActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  _activateBehaviours:
+  - {fileID: 5775689137751618320}
+  _deactivateBehaviours: []
+--- !u!114 &5775689137751618320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6673419274430969277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0335f0543b4314483746251a867e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _damage: 1
   _permaDeath: 1

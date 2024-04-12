@@ -13,6 +13,7 @@ namespace InputManagement
         private PlayerControl _playerControl;
 
         public event Action<MoveDirection> onMoveInput;
+        public event Action onUseAbility;
 
         private void Awake()
         {
@@ -27,6 +28,8 @@ namespace InputManagement
                 _playerControl.TouchMap.TouchContact.canceled += EndTouch;
 
                 _swipeDetector.onSwipeDetected += HandleMoveInput;
+
+                _playerControl.TouchMap.UseAbility.started += UseAbility;
             } else if (SystemInfo.deviceType == DeviceType.Desktop) {
                 _playerControl.PCmap.Enable();
 
@@ -34,7 +37,14 @@ namespace InputManagement
                 _playerControl.PCmap.Roll.started += (ctx) => { HandleMoveInput(MoveDirection.Back); };
                 _playerControl.PCmap.Left.started += (ctx) => { HandleMoveInput(MoveDirection.Left); };
                 _playerControl.PCmap.Right.started += (ctx) => { HandleMoveInput(MoveDirection.Right); };
+
+                _playerControl.PCmap.UseAbility.started += UseAbility;
             }
+        }
+
+        private void UseAbility(InputAction.CallbackContext obj)
+        {
+            onUseAbility.Invoke();
         }
 
         public float GetDeviation()

@@ -1,7 +1,5 @@
-﻿using InputManagement;
-using System;
+﻿using System;
 using UnityEngine;
-using Zenject;
 
 namespace Character
 {
@@ -11,11 +9,11 @@ namespace Character
         [SerializeField] private CharacterActivities _activities;
         [SerializeField] private CharacterHealth _characterHealth;
         [SerializeField] private CharacterAnimation _characterAnimation;
+        [SerializeField] private CharacterAbility _characterAbility;
 
         public CharacterRun CharacterRun => _characterRun;
         public CharacterActivities Activity => _activities;
-        public CharacterHealth CharacterHealth => _characterHealth;
-        public CharacterAnimation CharacterAnimation => _characterAnimation;
+        public CharacterAbility CharacterAbility => _characterAbility;
 
         public event Action onDeath;
 

@@ -44,6 +44,15 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""UseAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""bcb1534b-9ce5-4548-9c79-e05e5f108094"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -66,6 +75,17 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""TouchPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d86c196-3bd4-4b3d-b37b-e805d07e9a75"",
+                    ""path"": ""<Touchscreen>/touch*/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -115,6 +135,15 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""name"": ""Roll"",
                     ""type"": ""Button"",
                     ""id"": ""f3a75208-eb78-4381-ab13-34348eb657b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""a54eed87-f6e6-4e41-997d-46ef69af3ca9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -231,6 +260,28 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""693db1ff-b051-4712-9d7b-c1ae67744d77"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f39018a-031b-4f40-96c3-6115bab98e2a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -241,6 +292,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_TouchMap = asset.FindActionMap("TouchMap", throwIfNotFound: true);
         m_TouchMap_TouchContact = m_TouchMap.FindAction("TouchContact", throwIfNotFound: true);
         m_TouchMap_TouchPosition = m_TouchMap.FindAction("TouchPosition", throwIfNotFound: true);
+        m_TouchMap_UseAbility = m_TouchMap.FindAction("UseAbility", throwIfNotFound: true);
         // PC map
         m_PCmap = asset.FindActionMap("PC map", throwIfNotFound: true);
         m_PCmap_MousePosition = m_PCmap.FindAction("MousePosition", throwIfNotFound: true);
@@ -248,6 +300,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_PCmap_Right = m_PCmap.FindAction("Right", throwIfNotFound: true);
         m_PCmap_Jump = m_PCmap.FindAction("Jump", throwIfNotFound: true);
         m_PCmap_Roll = m_PCmap.FindAction("Roll", throwIfNotFound: true);
+        m_PCmap_UseAbility = m_PCmap.FindAction("UseAbility", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -311,12 +364,14 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private List<ITouchMapActions> m_TouchMapActionsCallbackInterfaces = new List<ITouchMapActions>();
     private readonly InputAction m_TouchMap_TouchContact;
     private readonly InputAction m_TouchMap_TouchPosition;
+    private readonly InputAction m_TouchMap_UseAbility;
     public struct TouchMapActions
     {
         private @PlayerControl m_Wrapper;
         public TouchMapActions(@PlayerControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @TouchContact => m_Wrapper.m_TouchMap_TouchContact;
         public InputAction @TouchPosition => m_Wrapper.m_TouchMap_TouchPosition;
+        public InputAction @UseAbility => m_Wrapper.m_TouchMap_UseAbility;
         public InputActionMap Get() { return m_Wrapper.m_TouchMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -332,6 +387,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @TouchPosition.started += instance.OnTouchPosition;
             @TouchPosition.performed += instance.OnTouchPosition;
             @TouchPosition.canceled += instance.OnTouchPosition;
+            @UseAbility.started += instance.OnUseAbility;
+            @UseAbility.performed += instance.OnUseAbility;
+            @UseAbility.canceled += instance.OnUseAbility;
         }
 
         private void UnregisterCallbacks(ITouchMapActions instance)
@@ -342,6 +400,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @TouchPosition.started -= instance.OnTouchPosition;
             @TouchPosition.performed -= instance.OnTouchPosition;
             @TouchPosition.canceled -= instance.OnTouchPosition;
+            @UseAbility.started -= instance.OnUseAbility;
+            @UseAbility.performed -= instance.OnUseAbility;
+            @UseAbility.canceled -= instance.OnUseAbility;
         }
 
         public void RemoveCallbacks(ITouchMapActions instance)
@@ -368,6 +429,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_PCmap_Right;
     private readonly InputAction m_PCmap_Jump;
     private readonly InputAction m_PCmap_Roll;
+    private readonly InputAction m_PCmap_UseAbility;
     public struct PCmapActions
     {
         private @PlayerControl m_Wrapper;
@@ -377,6 +439,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         public InputAction @Right => m_Wrapper.m_PCmap_Right;
         public InputAction @Jump => m_Wrapper.m_PCmap_Jump;
         public InputAction @Roll => m_Wrapper.m_PCmap_Roll;
+        public InputAction @UseAbility => m_Wrapper.m_PCmap_UseAbility;
         public InputActionMap Get() { return m_Wrapper.m_PCmap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -401,6 +464,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Roll.started += instance.OnRoll;
             @Roll.performed += instance.OnRoll;
             @Roll.canceled += instance.OnRoll;
+            @UseAbility.started += instance.OnUseAbility;
+            @UseAbility.performed += instance.OnUseAbility;
+            @UseAbility.canceled += instance.OnUseAbility;
         }
 
         private void UnregisterCallbacks(IPCmapActions instance)
@@ -420,6 +486,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Roll.started -= instance.OnRoll;
             @Roll.performed -= instance.OnRoll;
             @Roll.canceled -= instance.OnRoll;
+            @UseAbility.started -= instance.OnUseAbility;
+            @UseAbility.performed -= instance.OnUseAbility;
+            @UseAbility.canceled -= instance.OnUseAbility;
         }
 
         public void RemoveCallbacks(IPCmapActions instance)
@@ -441,6 +510,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     {
         void OnTouchContact(InputAction.CallbackContext context);
         void OnTouchPosition(InputAction.CallbackContext context);
+        void OnUseAbility(InputAction.CallbackContext context);
     }
     public interface IPCmapActions
     {
@@ -449,5 +519,6 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnRight(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
+        void OnUseAbility(InputAction.CallbackContext context);
     }
 }

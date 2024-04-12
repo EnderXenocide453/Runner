@@ -1,4 +1,5 @@
 ﻿using Character;
+using System;
 using UnityEngine;
 using Utils;
 using Zenject;
@@ -15,6 +16,7 @@ namespace InputManagement
         {
             _inputManager = manager;
             _inputManager.onMoveInput += OnCharacterMoveInput;
+            _inputManager.onUseAbility += OnUseAbility;
 
             _character = GetComponent<CharacterHandler>();
             _character.onDeath += () =>
@@ -22,6 +24,11 @@ namespace InputManagement
                 enabled = false;
                 _inputManager.enabled = false;
             };
+        }
+
+        private void OnUseAbility()
+        {
+            _character.CharacterAbility.Execute();
         }
 
         protected void OnCharacterMoveInput(MoveDirection direction)

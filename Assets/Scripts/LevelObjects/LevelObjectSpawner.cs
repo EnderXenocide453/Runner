@@ -14,7 +14,7 @@ namespace LevelObjects
         {
             foreach (var point in _spawnPoints)
             {
-                var objects = _levelObjectFactory.GenerateObjects(point.transform, point.Count, point.Width);
+                var objects = _levelObjectFactory.GenerateObject(point.Connectors);
                 _objects.AddRange(objects);
 
                 foreach (var obj in objects)

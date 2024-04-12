@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTagsArray:
-  - Player
+  - TurnTrigger
   onActivated:
     m_PersistentCalls:
       m_Calls:

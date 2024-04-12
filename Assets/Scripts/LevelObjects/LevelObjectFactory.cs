@@ -20,21 +20,14 @@ namespace LevelObjects
             }
         }
 
-        public LevelObject[] GenerateObjects(Transform parent, int count, float placeWidth)
+        public LevelObject[] GenerateObject(Transform[] connectors)
         {
-            var objects = new LevelObject[count];
+            var objects = new LevelObject[connectors.Length];
             int solidCount = 0;
-            Vector3 startPosition = Vector3.zero;
-            float step = 0;
 
-            if (count > 1) {
-                startPosition = new Vector3(-placeWidth / 2, 0, 0);
-                step = placeWidth / (count - 1);
-            }
-
-            for (int i = 0; i < count; i++) {
-                Vector3 position = startPosition + Vector3.right * i * step;
-                objects[i] = CreateRandomObject(position, parent, solidCount < count, out bool isSolid);
+            for (int i = 0; i < objects.Length; i++) {
+                bool allowSolid = solidCount + 1 < objects.Length;
+                objects[i] = CreateRandomObject(connectors[i], allowSolid, out bool isSolid);
 
                 if (isSolid)
                     solidCount++;
@@ -43,7 +36,7 @@ namespace LevelObjects
             return objects;
         }
 
-        private LevelObject CreateRandomObject(Vector3 localPosition, Transform parent, bool allowSolid, out bool isSolid)
+        private LevelObject CreateRandomObject(Transform parent, bool allowSolid, out bool isSolid)
         {
             LevelObjectInfo info;
 
@@ -54,7 +47,6 @@ namespace LevelObjects
 
             isSolid = info.IsSolid;
             LevelObject obj = Instantiate(info.Prefab, parent).GetComponent<LevelObject>();
-            obj.transform.localPosition = localPosition;
             return obj;
         }
     }

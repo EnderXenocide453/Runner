@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5475075541465225334}
   - component: {fileID: 3057906578925739256}
   - component: {fileID: 3797256038112701705}
+  - component: {fileID: 3980000247133873587}
   m_Layer: 0
   m_Name: UpObstacle
   m_TagString: Untagged
@@ -123,6 +124,33 @@ MonoBehaviour:
       m_Calls: []
   _damage: 1
   _permaDeath: 0
+--- !u!54 &3980000247133873587
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254645460577259454}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1230819485960182146
 GameObject:
   m_ObjectHideFlags: 0

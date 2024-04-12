@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roadBlockPrefabs:
   - {fileID: 2070326230873847329, guid: 873b4f35b48041845b37ff582a01b4ab, type: 3}
+  - {fileID: 2070326230873847329, guid: 9b4b63e53c3cefe499744a52e70594f0, type: 3}

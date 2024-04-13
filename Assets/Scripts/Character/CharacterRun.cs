@@ -24,6 +24,7 @@ namespace Character
         private Vector3 _turnOrigin;
 
         public event Action onIncorrectTurn;
+        public event Action<float> onDistanceChanged;
 
         public float CurrentSpeed
         {
@@ -88,6 +89,8 @@ namespace Character
 
             _currentDistance += Vector3.Distance(_oldPosition, transform.position);
             _oldPosition = transform.position;
+
+            onDistanceChanged?.Invoke(_currentDistance);
         }
 
         private void LookAtDirection()

@@ -8,24 +8,24 @@ namespace Character
         [SerializeField] private int _maxHealth = 3;
         private int _currentHealth;
 
+        public int MaxHealth => _maxHealth;
+        public int CurrentHealth => _currentHealth;
+
         public event Action onDeath;
-        public event Action<int> onDamageReceived;
-        public event Action<int> onHealingReceived;
+        public event Action<int> onHealthChanged;
 
         private void Awake()
         {
-            _currentHealth = _maxHealth;
+            SetHealth(MaxHealth);
         }
 
         public void GetHealing(int healAmount)
         {
-            onHealingReceived?.Invoke(healAmount);
             SetHealth(_currentHealth + healAmount);
         }
 
         public void GetDamage(int damage)
         {
-            onDamageReceived?.Invoke(damage);
             SetHealth(_currentHealth - damage);
 
             BecomeInvincible();

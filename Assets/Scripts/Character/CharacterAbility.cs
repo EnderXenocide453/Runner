@@ -10,26 +10,36 @@ namespace Character
         [SerializeField] private int _maxChargesCount = 32;
         [SerializeField] private int _chargesCount = 0;
 
+        public int MaxCharges => _maxChargesCount;
+        public int Charges => _chargesCount;
+
         public event Action onAbilityExecuted;
-        public event Action onRecharged;
+        public event Action<int> onChargesChanged;
 
         public void Execute()
         {
             if (_chargesCount == 0 || _ability == null || !_ability.IsReady)
                 return;
 
-            _chargesCount--;
+            SetCount(Charges - 1);
             _ability.Execute();
             onAbilityExecuted?.Invoke();
         }
 
         public void AddCharge()
         {
-            if (_chargesCount >= _maxChargesCount)
-                return;
+            SetCount(Charges + 1);
+        }
 
-            _chargesCount++;
-            onRecharged?.Invoke();
+        private void SetCount(int count)
+        {
+            if (count < 0)
+                count = 0;
+            else if (count > MaxCharges)
+                count = MaxCharges;
+
+            _chargesCount = count;
+            onChargesChanged?.Invoke(count);
         }
     }
 }

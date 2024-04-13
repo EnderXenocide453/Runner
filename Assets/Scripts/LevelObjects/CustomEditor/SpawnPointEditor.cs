@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace LevelObjects
 {
+#if UNITY_EDITOR
     [CustomEditor(typeof(SpawnPoint))]
     public class SpawnPointEditor : Editor
     {
@@ -19,5 +20,6 @@ namespace LevelObjects
             }
         }
     }
+#endif
 }
 

@@ -45,7 +45,7 @@ namespace Character
         {
             _currentHealth = Mathf.Clamp(amount, 0, _maxHealth);
 
-            //Обновляем визуализацию здоровья
+            onHealthChanged?.Invoke(amount);
 
             if (_currentHealth == 0) {
                 Death();

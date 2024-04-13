@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Visualization
 {
     public class CountedImagesVisualizer : ValueVisualizer
     {
         [SerializeField] private RectTransform _container;
-        [SerializeField] private GameObject _counterImage;
+        [SerializeField] private Sprite _counterImage;
 
         private List<Transform> _instancedImages = new List<Transform>();
 
@@ -16,7 +17,7 @@ namespace UI.Visualization
             UpdateImages(count, _instancedImages, _counterImage, _container);
         }
 
-        protected void UpdateImages(int count, List<Transform> images, GameObject prefab, RectTransform parent)
+        protected void UpdateImages(int count, List<Transform> images, Sprite sprite, RectTransform parent)
         {
             count = count < 0 ? 0 : count;
 
@@ -27,15 +28,24 @@ namespace UI.Visualization
                 return;
             }
             if (count < images.Count) {
-                for (int i = count - 1; i < images.Count; i++) {
+                for (int i = images.Count - 1; i >= count; i--) {
                     var image = images[i];
+                    images.RemoveAt(i);
                     Destroy(image.gameObject);
                 }
                 return;
             }
-            for (int i = 0; i < count - images.Count; ++i) {
-                Instantiate(prefab, parent);
+            for (int i = images.Count; i < count; i++) {
+                images.Add(CreateNewImage(parent, sprite));
             }
+        }
+
+        private Transform CreateNewImage(Transform parent, Sprite image)
+        {
+            var obj = new GameObject("CounterImage", typeof(CanvasRenderer), typeof(Image));
+            obj.GetComponent<Image>().sprite = image;
+            obj.transform.SetParent(parent);
+            return obj.transform;
         }
 
         private void Clear()

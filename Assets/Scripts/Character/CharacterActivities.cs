@@ -29,7 +29,7 @@ namespace Character
 
         public void Deviate(float deviation)
         {
-            _currentDeviation = Mathf.Lerp(_currentDeviation, deviation, _deviationSharpness);
+            _currentDeviation = Mathf.Lerp(_currentDeviation, deviation, _deviationSharpness * Time.timeScale);
             float displayDeviation = Mathf.Clamp(_currentDeviation, -_maxDeviation, _maxDeviation);
             
             transform.localPosition = new Vector3(displayDeviation, transform.localPosition.y, transform.localPosition.z);

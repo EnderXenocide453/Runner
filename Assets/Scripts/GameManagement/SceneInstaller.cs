@@ -8,15 +8,20 @@ namespace GameManagement
 {
     public class SceneInstaller : MonoInstaller
     {
+        [Header("Player")]
         [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private Transform _spawnPoint;
+        [Header("UI")]
         [SerializeField] private GameObject _playerCanvasPrefab;
         [SerializeField] private GameObject _deathCanvasPrefab;
+        [SerializeField] private GameObject _pauseCanvasPrefab;
+        [Header("Input")]
         [SerializeField] private InputManagement.InputManager _input;
 
         private CharacterHandler _characterHandler;
-        private DeathScreen _deathScreen;
         private ScoreHandler _scoreHandler;
+        private DeathScreen _deathScreen;
+        private PauseScreen _pauseScreen;
 
         public override void InstallBindings()
         {
@@ -45,6 +50,7 @@ namespace GameManagement
 
         private void InstallUI()
         {
+            //ќтображение статистики персонажа
             CharacterInfoVisualizer visualizer = Container
                             .InstantiatePrefabForComponent<CharacterInfoVisualizer>(_playerCanvasPrefab);
             Container.Bind<CharacterInfoVisualizer>()
@@ -52,6 +58,7 @@ namespace GameManagement
                 .AsSingle()
                 .NonLazy();
 
+            //Ёкран смерти
             _deathScreen = Container
                 .InstantiatePrefabForComponent<DeathScreen>(_deathCanvasPrefab);
             Container.Bind<DeathScreen>()
@@ -59,6 +66,15 @@ namespace GameManagement
                 .AsSingle()
                 .NonLazy();
             _deathScreen.gameObject.SetActive(false);
+
+            //Ёкран паузы
+            _pauseScreen = Container
+                .InstantiatePrefabForComponent<PauseScreen>(_pauseCanvasPrefab);
+            Container.Bind<PauseScreen>()
+                .FromInstance(_pauseScreen)
+                .AsSingle()
+                .NonLazy();
+            _pauseScreen.Hide();
         }
 
         private void LoadInfo()

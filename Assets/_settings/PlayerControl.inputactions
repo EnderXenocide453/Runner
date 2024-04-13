@@ -262,6 +262,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "GeneralMap",
+            "id": "d892a9b9-bc48-4d23-bb5f-2a2a58f85cdc",
+            "actions": [
+                {
+                    "name": "PauseAction",
+                    "type": "Button",
+                    "id": "173b7fd3-307d-42b2-953c-3f04dffcb4cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7f8752f7-c7ad-4f91-a851-2d7c1ff3d872",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

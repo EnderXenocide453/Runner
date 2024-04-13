@@ -284,6 +284,34 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""GeneralMap"",
+            ""id"": ""d892a9b9-bc48-4d23-bb5f-2a2a58f85cdc"",
+            ""actions"": [
+                {
+                    ""name"": ""PauseAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""173b7fd3-307d-42b2-953c-3f04dffcb4cd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7f8752f7-c7ad-4f91-a851-2d7c1ff3d872"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -301,6 +329,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_PCmap_Jump = m_PCmap.FindAction("Jump", throwIfNotFound: true);
         m_PCmap_Roll = m_PCmap.FindAction("Roll", throwIfNotFound: true);
         m_PCmap_UseAbility = m_PCmap.FindAction("UseAbility", throwIfNotFound: true);
+        // GeneralMap
+        m_GeneralMap = asset.FindActionMap("GeneralMap", throwIfNotFound: true);
+        m_GeneralMap_PauseAction = m_GeneralMap.FindAction("PauseAction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -506,6 +537,52 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         }
     }
     public PCmapActions @PCmap => new PCmapActions(this);
+
+    // GeneralMap
+    private readonly InputActionMap m_GeneralMap;
+    private List<IGeneralMapActions> m_GeneralMapActionsCallbackInterfaces = new List<IGeneralMapActions>();
+    private readonly InputAction m_GeneralMap_PauseAction;
+    public struct GeneralMapActions
+    {
+        private @PlayerControl m_Wrapper;
+        public GeneralMapActions(@PlayerControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PauseAction => m_Wrapper.m_GeneralMap_PauseAction;
+        public InputActionMap Get() { return m_Wrapper.m_GeneralMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GeneralMapActions set) { return set.Get(); }
+        public void AddCallbacks(IGeneralMapActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GeneralMapActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GeneralMapActionsCallbackInterfaces.Add(instance);
+            @PauseAction.started += instance.OnPauseAction;
+            @PauseAction.performed += instance.OnPauseAction;
+            @PauseAction.canceled += instance.OnPauseAction;
+        }
+
+        private void UnregisterCallbacks(IGeneralMapActions instance)
+        {
+            @PauseAction.started -= instance.OnPauseAction;
+            @PauseAction.performed -= instance.OnPauseAction;
+            @PauseAction.canceled -= instance.OnPauseAction;
+        }
+
+        public void RemoveCallbacks(IGeneralMapActions instance)
+        {
+            if (m_Wrapper.m_GeneralMapActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGeneralMapActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GeneralMapActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GeneralMapActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GeneralMapActions @GeneralMap => new GeneralMapActions(this);
     public interface ITouchMapActions
     {
         void OnTouchContact(InputAction.CallbackContext context);
@@ -520,5 +597,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnUseAbility(InputAction.CallbackContext context);
+    }
+    public interface IGeneralMapActions
+    {
+        void OnPauseAction(InputAction.CallbackContext context);
     }
 }

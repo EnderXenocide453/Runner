@@ -14,18 +14,29 @@ namespace InputManagement
 
         public event Action<MoveDirection> onMoveInput;
         public event Action onUseAbility;
+        public event Action onPause;
 
         private void Awake()
         {
             _playerControl = new PlayerControl();
-
-            Debug.Log($"Device: {SystemInfo.deviceType}");
+            InitGeneral();
 
             if (SystemInfo.deviceType == DeviceType.Handheld) {
                 InitDesktop();
             } else if (SystemInfo.deviceType == DeviceType.Desktop) {
                 InitHandheld();
             }
+        }
+
+        private void InitGeneral()
+        {
+            _playerControl.GeneralMap.Enable();
+            _playerControl.GeneralMap.PauseAction.started += OnPause;
+        }
+
+        private void OnPause(InputAction.CallbackContext obj)
+        {
+            onPause?.Invoke();
         }
 
         private void InitHandheld()

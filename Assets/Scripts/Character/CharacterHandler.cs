@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
 namespace Character
 {
@@ -18,12 +19,17 @@ namespace Character
 
         public event Action onDeath;
 
+        [Inject]
+        public void Constructor(CharacterInfoVisualizer visualizer)
+        {
+            _valuesVisualizer = visualizer;
+            ConnectVisualizers();
+        }
+
         private void Awake()
         {
             _characterRun.onIncorrectTurn += () => _characterHealth.GetDamage(1);
             _characterHealth.onDeath += OnDeath;
-
-            ConnectVisualizers();
         }
 
         private void ConnectVisualizers()

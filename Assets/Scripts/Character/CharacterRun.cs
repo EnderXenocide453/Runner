@@ -26,6 +26,7 @@ namespace Character
         private Vector3 _turnOrigin;
 
         public float MaxSpeedMultiplier => _maxSpeedMultiplier;
+        public float CurrentDistance => _currentDistance;
 
         public event Action onIncorrectTurn;
         public event Action<float> onDistanceChanged;

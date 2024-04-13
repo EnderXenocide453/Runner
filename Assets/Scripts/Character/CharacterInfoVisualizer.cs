@@ -22,6 +22,10 @@ namespace Character
 
         public void SetChargesCount(int count) => SetValue(count, _chargeCountVisualizer);
 
+        public void SetMaxSpeed(float value) => SetMaxValue(value, _speedVisualizer);
+
+        public void SetSpeed(float value) => SetValue(value, _speedVisualizer);
+
         private void SetValue(float value, ValueVisualizer visualizer) => visualizer?.Visualize(value);
 
         private void SetMaxValue(float value, ValueVisualizer visualizer)

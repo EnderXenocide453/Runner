@@ -6,6 +6,7 @@ namespace UI.Visualization
     public class TextPairVisualizer : TextVisualizer, IMaxValueHandler
     {
         [SerializeField] private Text _maxField;
+        [SerializeField] private string _maxDescription;
         float _max;
 
         public float MaxValue
@@ -14,7 +15,7 @@ namespace UI.Visualization
             set
             {
                 _max = value;
-                _maxField.text = value.ToString();
+                DrawValue(value, _maxDescription, _maxField);
             }
         }
     }

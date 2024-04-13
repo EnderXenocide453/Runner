@@ -32,10 +32,12 @@ namespace Character
             _valuesVisualizer.SetHP(_characterHealth.CurrentHealth);
             _valuesVisualizer.SetMaxChargesCount(_characterAbility.MaxCharges);
             _valuesVisualizer.SetChargesCount(_characterAbility.Charges);
+            _valuesVisualizer.SetMaxSpeed(_characterRun.MaxSpeedMultiplier);
 
             _characterHealth.onHealthChanged += _valuesVisualizer.SetHP;
             _characterAbility.onChargesChanged += _valuesVisualizer.SetChargesCount;
             _characterRun.onDistanceChanged += _valuesVisualizer.SetScore;
+            _characterRun.onSpeedChanged += _valuesVisualizer.SetSpeed;
         }
 
         private void OnDeath()

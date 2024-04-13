@@ -211,6 +211,11 @@ MonoBehaviour:
   _characterHealth: {fileID: 1684087959144537600}
   _characterAnimation: {fileID: 3524016788489991445}
   _characterAbility: {fileID: 7679661554150109110}
+  _valuesVisualizer:
+    _healthVisualizer: {fileID: 0}
+    _scoreVizualizer: {fileID: 0}
+    _speedVisualizer: {fileID: 0}
+    _chargeCountVisualizer: {fileID: 0}
 --- !u!114 &7170610661366306490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,9 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb7ba3d764cf4448a1933c6b50f32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minSpeed: 2
-  _maxSpeed: 10
-  _speedIncreaseDistance: 1000
+  _minSpeed: 1
+  _maxSpeed: 5
+  _speedIncreaseDistance: 2000
   _speedCurve:
     serializedVersion: 2
     m_Curve:

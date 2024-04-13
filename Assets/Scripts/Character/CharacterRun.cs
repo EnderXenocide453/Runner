@@ -8,13 +8,15 @@ namespace Character
     [RequireComponent(typeof(Rigidbody))]
     public class CharacterRun : MonoBehaviour
     {
-        [SerializeField] private float _minSpeed = 1, _maxSpeed = 10;
+        [SerializeField] private float _minSpeedMultiplier = 1, _maxSpeedMultiplier = 10;
+        [SerializeField] private float _speed = 2;
         [SerializeField] private float _speedIncreaseDistance = 1000;
         [SerializeField] private AnimationCurve _speedCurve;
 
         [SerializeField] private float _rotateSpeed = 180;
 
         private float _currentDistance;
+        private float _currentSpeed;
         private bool _allowRotation;
         private Vector3 _oldPosition;
         private Rigidbody _body;
@@ -23,19 +25,11 @@ namespace Character
         private HashSet<MoveDirection> _availableDirections;
         private Vector3 _turnOrigin;
 
+        public float MaxSpeedMultiplier => _maxSpeedMultiplier;
+
         public event Action onIncorrectTurn;
         public event Action<float> onDistanceChanged;
-
-        public float CurrentSpeed
-        {
-            get
-            {
-                if (_currentDistance > _speedIncreaseDistance)
-                    return _maxSpeed;
-
-                return Mathf.Lerp(_minSpeed, _maxSpeed, _speedCurve.Evaluate(_currentDistance / _speedIncreaseDistance));
-            }
-        }
+        public event Action<float> onSpeedChanged;
 
         private void Start()
         {
@@ -45,7 +39,8 @@ namespace Character
 
         private void FixedUpdate()
         {
-            _body.MovePosition(_direction * CurrentSpeed * Time.fixedDeltaTime + _body.position);
+            CalculateCurrentSpeed();
+            _body.MovePosition(_direction * _currentSpeed * Time.fixedDeltaTime + _body.position);
             CalculateDistance();
             LookAtDirection();
         }
@@ -80,6 +75,16 @@ namespace Character
             _availableDirections.Clear();
 
             Debug.Log($"Disabled");
+        }
+
+        private void CalculateCurrentSpeed()
+        {
+            float speedMultiplier = _maxSpeedMultiplier;
+            if (_currentDistance < _speedIncreaseDistance)
+                speedMultiplier = Mathf.Lerp(_minSpeedMultiplier, _maxSpeedMultiplier, _speedCurve.Evaluate(_currentDistance / _speedIncreaseDistance));
+
+            _currentSpeed = _speed * speedMultiplier;
+            onSpeedChanged?.Invoke(speedMultiplier);
         }
 
         private void CalculateDistance()

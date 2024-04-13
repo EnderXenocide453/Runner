@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace Character
 {
-    [Serializable]
-    public class CharacterInfoVisualizer
+    public class CharacterInfoVisualizer : MonoBehaviour
     {
         [SerializeField] private ValueVisualizer _healthVisualizer;
         [SerializeField] private ValueVisualizer _scoreVizualizer;

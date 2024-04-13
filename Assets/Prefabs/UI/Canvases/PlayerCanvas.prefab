@@ -644,6 +644,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 221864174381953176, guid: b6d3f4c948e02044196e3d71f607e8ba, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 221864174381953176, guid: b6d3f4c948e02044196e3d71f607e8ba, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 221864174381953176, guid: b6d3f4c948e02044196e3d71f607e8ba, type: 3}
       propertyPath: m_FontData.m_HorizontalOverflow
       value: 1
       objectReference: {fileID: 0}

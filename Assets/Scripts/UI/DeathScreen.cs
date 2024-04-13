@@ -1,5 +1,5 @@
+using GameManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
@@ -30,12 +30,12 @@ namespace UI
 
         public void ToMainMenu()
         {
-
+            SceneLoader.LoadMenu();
         }
 
         public void Restart()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneLoader.LoadGame();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameManagement;
+using UnityEngine;
 using Zenject;
 
 namespace UI
@@ -35,7 +36,7 @@ namespace UI
 
         public void ToMainMenu()
         {
-
+            SceneLoader.LoadMenu();
         }
 
         private void Toggle()

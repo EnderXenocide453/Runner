@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InitBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 8759919206471045164, guid: 5bc11d8c5f060d6429d8eac3258d4935, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

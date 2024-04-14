@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TurnLeft Road Factory
   m_EditorClassIdentifier: 
   _roadBlockPrefabs:
-  - {fileID: 8308430220154433245, guid: 32aac26226e72e64b95ef96e441140e6, type: 3}
+  - {fileID: 3595653606738107885, guid: 318dfe12e5059624185a2c42fe3bfd5e, type: 3}

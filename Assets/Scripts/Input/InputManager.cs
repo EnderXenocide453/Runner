@@ -9,6 +9,7 @@ namespace InputManagement
     {
         [SerializeField] float _mouseSensitivity = 1f;
         [SerializeField] SwipeDetector _swipeDetector;
+        [SerializeField] MultitapDetector _multitapDetector;
 
         private PlayerControl _playerControl;
 
@@ -22,9 +23,9 @@ namespace InputManagement
             InitGeneral();
 
             if (SystemInfo.deviceType == DeviceType.Handheld) {
-                InitDesktop();
-            } else if (SystemInfo.deviceType == DeviceType.Desktop) {
                 InitHandheld();
+            } else if (SystemInfo.deviceType == DeviceType.Desktop) {
+                InitDesktop();
             }
         }
 
@@ -34,12 +35,7 @@ namespace InputManagement
             _playerControl.GeneralMap.PauseAction.started += OnPause;
         }
 
-        private void OnPause(InputAction.CallbackContext obj)
-        {
-            onPause?.Invoke();
-        }
-
-        private void InitHandheld()
+        private void InitDesktop()
         {
             _playerControl.PCmap.Enable();
 
@@ -48,10 +44,10 @@ namespace InputManagement
             _playerControl.PCmap.Left.started += (ctx) => { HandleMoveInput(MoveDirection.Left); };
             _playerControl.PCmap.Right.started += (ctx) => { HandleMoveInput(MoveDirection.Right); };
 
-            _playerControl.PCmap.UseAbility.started += UseAbility;
+            _playerControl.PCmap.UseAbility.started += (ctx) => UseAbility();
         }
 
-        private void InitDesktop()
+        private void InitHandheld()
         {
             _playerControl.TouchMap.Enable();
 
@@ -59,11 +55,15 @@ namespace InputManagement
             _playerControl.TouchMap.TouchContact.canceled += EndTouch;
 
             _swipeDetector.onSwipeDetected += HandleMoveInput;
-
-            _playerControl.TouchMap.UseAbility.started += UseAbility;
+            _multitapDetector.onMultiTap += UseAbility;
         }
 
-        private void UseAbility(InputAction.CallbackContext obj)
+        private void OnPause(InputAction.CallbackContext obj)
+        {
+            onPause?.Invoke();
+        }
+
+        private void UseAbility()
         {
             onUseAbility.Invoke();
         }
@@ -95,7 +95,9 @@ namespace InputManagement
         {
             Vector2 pos = _playerControl.TouchMap.TouchPosition.ReadValue<Vector2>();
 
-            _swipeDetector.BeginDetection(pos, (float)obj.startTime);
+            float time = (float)obj.startTime;
+            _swipeDetector.BeginDetection(pos, time);
+            _multitapDetector.RegistrateTap(time);
         }
 
         private void OnEnable()

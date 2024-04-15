@@ -1,6 +1,7 @@
 using GameManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace UI
 {
@@ -11,6 +12,11 @@ namespace UI
         [SerializeField] private string _newHighScoreReplic = "Новый рекорд!";
         [SerializeField] private string _highScoreDescription = "Рекорд: ";
         [SerializeField] private string _scoreDescription = "Очков набрано: ";
+
+        private SceneLoader _sceneLoader;
+
+        [Inject]
+        public void Construct(SceneLoader sceneLoader) => _sceneLoader = sceneLoader;
 
         public void Show()
         {
@@ -30,12 +36,12 @@ namespace UI
 
         public void ToMainMenu()
         {
-            SceneLoader.LoadMenu();
+            _sceneLoader.LoadMenu();
         }
 
         public void Restart()
         {
-            SceneLoader.LoadGame();
+            _sceneLoader.LoadGame();
         }
     }
 }

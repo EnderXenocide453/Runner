@@ -7,12 +7,15 @@ namespace UI
     public class PauseScreen : MonoBehaviour
     {
         private InputManagement.InputManager _inputManager;
+        private SceneLoader _sceneLoader;
 
         [Inject]
-        public void Construct(InputManagement.InputManager inputManager)
+        public void Construct(InputManagement.InputManager inputManager, SceneLoader sceneLoader)
         {
             _inputManager = inputManager;
             _inputManager.onPause += Toggle;
+
+            _sceneLoader = sceneLoader;
         }
 
         private void OnApplicationPause(bool pause)
@@ -36,7 +39,7 @@ namespace UI
 
         public void ToMainMenu()
         {
-            SceneLoader.LoadMenu();
+            _sceneLoader.LoadMenu();
         }
 
         private void Toggle()

@@ -1,6 +1,7 @@
 ﻿using GameManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace UI
 {
@@ -8,6 +9,11 @@ namespace UI
     {
         [SerializeField] private Text _scoreField;
         [SerializeField] private string _fieldDescription = "Лучший рекорд: ";
+
+        private SceneLoader _sceneLoader;
+
+        [Inject]
+        public void Construct(SceneLoader sceneLoader) => _sceneLoader = sceneLoader;
 
         private void Awake()
         {
@@ -17,7 +23,7 @@ namespace UI
 
         public void StartGame()
         {
-            SceneLoader.LoadGame();
+            _sceneLoader.LoadGame();
         }
     }
 }

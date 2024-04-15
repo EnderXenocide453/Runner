@@ -1,13 +1,32 @@
-﻿using UnityEngine.SceneManagement;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameManagement
 {
-    public static class SceneLoader
+    public class SceneLoader : MonoBehaviour
     {
-        private static readonly int _menuIndex = 0;
-        private static readonly int _gameIndex = 1;
+        private readonly int _menuIndex = 0;
+        private readonly int _gameIndex = 1;
+        private readonly int _loadingIndex = 2;
 
-        public static void LoadGame() => SceneManager.LoadScene(_gameIndex);
-        public static void LoadMenu() => SceneManager.LoadScene(_menuIndex);
+        public void LoadGame() => LoadScene(_gameIndex);
+        public void LoadMenu() => LoadScene(_menuIndex);
+
+        private void LoadScene(int index)
+        {
+            StartCoroutine(Load(index));
+        }
+
+        private IEnumerator Load(int index)
+        {
+            AsyncOperation loading = SceneManager.LoadSceneAsync(_loadingIndex);
+            while (!loading.isDone)
+                yield return null;
+
+            loading = SceneManager.LoadSceneAsync(index);
+            while (!loading.isDone)
+                yield return null;
+        }
     }
 }

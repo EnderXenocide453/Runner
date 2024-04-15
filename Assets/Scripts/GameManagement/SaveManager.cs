@@ -40,9 +40,6 @@ namespace GameManagement
 
         public static void SaveFile(string filePath, object data)
         {
-            if (!File.Exists(filePath))
-                File.Create(filePath);
-
             string serialized = JsonUtility.ToJson(data);
 
             try {

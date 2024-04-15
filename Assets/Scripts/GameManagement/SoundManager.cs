@@ -11,10 +11,26 @@ namespace GameManagement
         [SerializeField] private AudioSource _soundSource;
         [SerializeField] private AudioSource _musicSource;
 
-        public bool MusicMute { set => _musicSource.mute = value; }
-        public float MusicVolume { set => _musicSource.volume = value; }
-        public bool SoundMute { set => _soundSource.mute = value; }
-        public float SoundVolume { set => _soundSource.volume = value; }
+        public bool MusicMute 
+        {
+            get => _musicSource.mute;
+            set => _musicSource.mute = value; 
+        }
+        public float MusicVolume 
+        {
+            get => _musicSource.volume;
+            set => _musicSource.volume = value; 
+        }
+        public bool SoundMute 
+        { 
+            get => _soundSource.mute;
+            set => _soundSource.mute = value; 
+        }
+        public float SoundVolume 
+        { 
+            get => _soundSource.volume; 
+            set => _soundSource.volume = value; 
+        }
 
         public SoundInfo GetSoundInfo()
         {
@@ -29,9 +45,9 @@ namespace GameManagement
 
         public void SetSoundConfig(SoundInfo soundInfo)
         {
-            _musicSource.mute = soundInfo.isMusicActive;
+            _musicSource.mute = !soundInfo.isMusicActive;
             _musicSource.volume = soundInfo.musicVolume;
-            _soundSource.mute = soundInfo.isSoundActive;
+            _soundSource.mute = !soundInfo.isSoundActive;
             _soundSource.volume = soundInfo.soundVolume;
         }
 

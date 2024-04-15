@@ -1,10 +1,12 @@
 ﻿namespace GameManagement
 {
+    [System.Serializable]
     public struct ConfigInfo
     {
         public SoundInfo soundInfo;
     }
 
+    [System.Serializable]
     public struct SoundInfo
     {
         public bool isMusicActive;

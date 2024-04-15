@@ -10,6 +10,8 @@ namespace GameManagement
 
         public override void InstallBindings()
         {
+            _soundManager.SetSoundConfig(SaveManager.LoadConfig().soundInfo);
+
             Container.Bind<SceneLoader>().FromInstance(_sceneLoader).AsSingle().NonLazy();
             Container.Bind<SoundManager>().FromInstance(_soundManager).AsSingle().NonLazy();
         }

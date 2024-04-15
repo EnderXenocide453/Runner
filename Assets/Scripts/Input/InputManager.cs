@@ -115,5 +115,12 @@ namespace InputManagement
             _playerControl.TouchMap.Disable();
             _playerControl.PCmap.Disable();
         }
+
+        private void OnDestroy()
+        {
+            onMoveInput = null;
+            onUseAbility = null;
+            onPause = null;
+        }
     }
 }

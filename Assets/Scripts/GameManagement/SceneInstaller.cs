@@ -78,7 +78,7 @@ namespace GameManagement
 
         private void LoadInfo()
         {
-            SaveInfo info = SaveManager.Load();
+            SaveInfo info = SaveManager.LoadGame();
 
             _scoreHandler = new ScoreHandler(info.highScore);
         }
@@ -91,7 +91,7 @@ namespace GameManagement
             _deathScreen.ShowHighScore(_scoreHandler.HighScore, score);
             _deathScreen.Show();
 
-            SaveManager.Save(new SaveInfo() { highScore = _scoreHandler.HighScore });
+            SaveManager.SaveGame(new SaveInfo() { highScore = _scoreHandler.HighScore });
         }
     }
 }

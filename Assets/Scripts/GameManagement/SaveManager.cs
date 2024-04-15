@@ -5,38 +5,70 @@ namespace GameManagement
 {
     public static class SaveManager
     {
-        public static string Path => Application.persistentDataPath + "/SaveData.sav";
+        public static string SavePath => Application.persistentDataPath + "/SaveData.sav";
+        public static string ConfigPath => Application.persistentDataPath + "/Config.cfg";
 
-        public static void Save(SaveInfo saveInfo)
+        public static void SaveGame(SaveInfo saveInfo) => SaveFile(SavePath, saveInfo);
+
+        public static SaveInfo LoadGame()
         {
-            if (!File.Exists(Path))
-                File.Create(Path);
+            if (LoadFile<SaveInfo>(SavePath, out var data)) {
+                return data;
+            }
+            return new SaveInfo();
+        }
 
-            string serialized = JsonUtility.ToJson(saveInfo);
+        public static void SaveConfig(ConfigInfo config) => SaveFile(ConfigPath, config);
+
+        public static ConfigInfo LoadConfig()
+        {
+            if (LoadFile<ConfigInfo>(ConfigPath, out var data)) {
+                return data;
+            }
+
+            return new ConfigInfo()
+            {
+                soundInfo = new SoundInfo
+                {
+                    isMusicActive = true,
+                    musicVolume = 1,
+                    isSoundActive = true,
+                    soundVolume = 1
+                }
+            };
+        }
+
+        public static void SaveFile(string filePath, object data)
+        {
+            if (!File.Exists(filePath))
+                File.Create(filePath);
+
+            string serialized = JsonUtility.ToJson(data);
 
             try {
-                File.WriteAllText(Path, serialized);
+                File.WriteAllText(filePath, serialized);
             }
             catch (System.Exception) {
-                Debug.LogError("Ошибка записи сохранения");
+                Debug.LogError($"Ошибка записи файла {filePath}");
             }
         }
 
-        public static SaveInfo Load()
+        public static bool LoadFile<T>(string filePath, out T data) where T : struct
         {
-            SaveInfo saveInfo = new SaveInfo();
+            data = new();
 
-            if (!File.Exists(Path))
-                return saveInfo;
+            if (!File.Exists(filePath))
+                return false;
 
             try {
-                saveInfo = JsonUtility.FromJson<SaveInfo>(File.ReadAllText(Path));
+                data = JsonUtility.FromJson<T>(File.ReadAllText(filePath));
             }
             catch (System.Exception) {
-                Debug.LogError("Ошибка чтения файла");
+                Debug.LogError($"Ошибка чтения файла {filePath}");
+                return false;
             }
 
-            return saveInfo;
+            return true;
         }
     }
 }

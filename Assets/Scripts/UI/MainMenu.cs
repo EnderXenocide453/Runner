@@ -17,7 +17,7 @@ namespace UI
 
         private void Awake()
         {
-            SaveInfo info = SaveManager.Load();
+            SaveInfo info = SaveManager.LoadGame();
             _scoreField.text = _fieldDescription + info.highScore;
         }
 

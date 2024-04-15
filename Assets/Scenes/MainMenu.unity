@@ -818,6 +818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 974693991}
   - component: {fileID: 974693990}
+  - component: {fileID: 974693992}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -871,6 +872,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &974693992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974693989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3156bb1771d849e478777fce157a25d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _music:
+  - {fileID: 8300000, guid: 2933e7323044aec41beba5e040c97477, type: 3}
+  - {fileID: 8300000, guid: af22fb625db11164eb382278e4d2e7a1, type: 3}
 --- !u!1 &1152230218
 GameObject:
   m_ObjectHideFlags: 0

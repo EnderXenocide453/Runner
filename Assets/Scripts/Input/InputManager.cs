@@ -8,6 +8,7 @@ namespace InputManagement
     public class InputManager : MonoBehaviour
     {
         [SerializeField] float _mouseSensitivity = 1f;
+        [SerializeField] float _accelerometrSensitivity = 1.5f;
         [SerializeField] SwipeDetector _swipeDetector;
         [SerializeField] MultitapDetector _multitapDetector;
 
@@ -71,7 +72,7 @@ namespace InputManagement
         public float GetDeviation()
         {
             if (SystemInfo.deviceType == DeviceType.Handheld) {
-                return Input.acceleration.x;
+                return Input.acceleration.x * _accelerometrSensitivity;
             }
 
             float deviation = _playerControl.PCmap.MousePosition.ReadValue<Vector2>().x;

@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c3d4698632d0d40b1137102d744962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 7
+  _force: 1
   _loopTime: 3
   _timeOffset: 0
   _bounceCurve:
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c3d4698632d0d40b1137102d744962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 5
+  _force: 0.5
   _loopTime: 3
   _timeOffset: 2
   _bounceCurve:
@@ -1504,7 +1504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c3d4698632d0d40b1137102d744962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 5
+  _force: 0.5
   _loopTime: 3
   _timeOffset: 1
   _bounceCurve:
@@ -1800,7 +1800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c3d4698632d0d40b1137102d744962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 5
+  _force: 0.5
   _loopTime: 3
   _timeOffset: 0.5
   _bounceCurve:

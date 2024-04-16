@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootPoint: {fileID: 0}
-  _shootSound: 2
+  _shootSound: 3
   _rayDistance: 10
   _rayRadius: 0.5
   _rayMask:

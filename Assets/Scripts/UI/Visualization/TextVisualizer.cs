@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace UI.Visualization
 {
+    /// <summary>
+    /// Текстовый визуализатор
+    /// </summary>
     public class TextVisualizer : ValueVisualizer
     {
         [SerializeField] private Text _valueField;

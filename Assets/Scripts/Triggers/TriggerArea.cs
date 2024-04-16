@@ -4,6 +4,9 @@ using UnityEngine.Events;
 
 namespace Triggers
 {
+    /// <summary>
+    /// Базовый класс триггера с настройкой тегов взаимодействия и событиями активации/деактивации
+    /// </summary>
     public class TriggerArea : MonoBehaviour
     {
         [SerializeField] private string[] _targetTagsArray;

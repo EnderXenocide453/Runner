@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace RoadBuilding
 {
+    /// <summary>
+    /// Логика активации и деактивации блоков
+    /// </summary>
     public class RoadHandler : MonoBehaviour
     {
         const int GenerationDepth = 2;

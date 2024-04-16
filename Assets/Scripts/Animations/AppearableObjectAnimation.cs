@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 namespace Animations
 {
+    /// <summary>
+    /// Общий класс для анимации появляющихся и исчезающих объектов
+    /// </summary>
     [RequireComponent(typeof(Animator))]
     public class AppearableObjectAnimation : MonoBehaviour
     {

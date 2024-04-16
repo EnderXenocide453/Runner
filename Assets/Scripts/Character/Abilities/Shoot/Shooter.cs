@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Character.Abilities
 {
+    /// <summary>
+    /// Базовый класс стрельбы
+    /// </summary>
     public abstract class Shooter : MonoBehaviour
     {
         [SerializeField] private Transform _shootPoint;

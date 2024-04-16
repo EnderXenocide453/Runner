@@ -4,6 +4,11 @@ using Zenject;
 
 namespace RoadBuilding
 {
+    /// <summary>
+    /// Фабрика блоков дороги. Выполнена в качестве наследника ScriptableObject чтобы в дальнейшем
+    /// реализовать возможность смены заранее подготовленных фабрик для разнообразия игрового процесса.
+    /// Например, для биомов со временем
+    /// </summary>
     [CreateAssetMenu(fileName = "New Road Factory", menuName = "RoadBuilding/Road Factory")]
     public class RoadBlockFactory : ScriptableObject
     {

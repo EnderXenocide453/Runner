@@ -4,16 +4,19 @@ using Zenject;
 
 namespace Character
 {
+    /// <summary>
+    /// Класс-контейнер логики персонажа
+    /// </summary>
     public class CharacterHandler : MonoBehaviour
     {
-        [SerializeField] private CharacterRun _characterRun;
+        [SerializeField] private CharacterDirection _characterDirection;
         [SerializeField] private CharacterActivities _activities;
         [SerializeField] private CharacterHealth _characterHealth;
         [SerializeField] private CharacterAnimation _characterAnimation;
         [SerializeField] private CharacterAbility _characterAbility;
-        [SerializeField] private CharacterInfoVisualizer _valuesVisualizer;
+        private CharacterInfoVisualizer _valuesVisualizer;
 
-        public CharacterRun CharacterRun => _characterRun;
+        public CharacterDirection CharacterDirection => _characterDirection;
         public CharacterActivities Activity => _activities;
         public CharacterAbility CharacterAbility => _characterAbility;
 
@@ -28,7 +31,7 @@ namespace Character
 
         private void Awake()
         {
-            _characterRun.onIncorrectTurn += () => _characterHealth.GetDamage(1);
+            _characterDirection.onIncorrectTurn += () => _characterHealth.GetDamage(1);
             _characterHealth.onDeath += OnDeath;
         }
 
@@ -38,17 +41,17 @@ namespace Character
             _valuesVisualizer.SetHP(_characterHealth.CurrentHealth);
             _valuesVisualizer.SetMaxChargesCount(_characterAbility.MaxCharges);
             _valuesVisualizer.SetChargesCount(_characterAbility.Charges);
-            _valuesVisualizer.SetMaxSpeed(_characterRun.MaxSpeedMultiplier);
+            _valuesVisualizer.SetMaxSpeed(_characterDirection.CharacterMove.MaxSpeedMultiplier);
 
             _characterHealth.onHealthChanged += _valuesVisualizer.SetHP;
             _characterAbility.onChargesChanged += _valuesVisualizer.SetChargesCount;
-            _characterRun.onDistanceChanged += _valuesVisualizer.SetScore;
-            _characterRun.onSpeedChanged += _valuesVisualizer.SetSpeed;
+            _characterDirection.CharacterMove.onDistanceChanged += _valuesVisualizer.SetScore;
+            _characterDirection.CharacterMove.onSpeedChanged += _valuesVisualizer.SetSpeed;
         }
 
         private void OnDeath()
         {
-            _characterRun.enabled = false;
+            _characterDirection.enabled = false;
             _characterHealth.enabled = false;
             _activities.enabled = false;
 

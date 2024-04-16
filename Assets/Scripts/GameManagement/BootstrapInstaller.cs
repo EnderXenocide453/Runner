@@ -3,6 +3,9 @@ using Zenject;
 
 namespace GameManagement
 {
+    /// <summary>
+    /// Установщик контекста проекта
+    /// </summary>
     public class BootstrapInstaller : MonoInstaller
     {
         [SerializeField] private SceneLoader _sceneLoader;

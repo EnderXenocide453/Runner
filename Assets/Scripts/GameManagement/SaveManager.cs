@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace GameManagement
 {
+    /// <summary>
+    /// Логика сохранения данных
+    /// </summary>
     public static class SaveManager
     {
         public static string SavePath => Application.persistentDataPath + "/SaveData.sav";

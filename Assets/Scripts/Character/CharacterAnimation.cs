@@ -2,6 +2,9 @@
 
 namespace Character
 {
+    /// <summary>
+    /// Класс, управляющий анимацией персонажа
+    /// </summary>
     [RequireComponent(typeof(Animator))]
     public class CharacterAnimation : MonoBehaviour
     {

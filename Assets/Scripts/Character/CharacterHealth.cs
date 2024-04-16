@@ -5,6 +5,9 @@ using Zenject;
 
 namespace Character
 {
+    /// <summary>
+    /// Здоровье персонажа
+    /// </summary>
     public class CharacterHealth : MonoBehaviour
     {
         [SerializeField] private int _maxHealth = 3;
@@ -37,13 +40,6 @@ namespace Character
         {
             SetHealth(_currentHealth - damage);
             _soundManager.PlaySound(SoundType.shipDamage);
-
-            BecomeInvincible();
-        }
-
-        private void BecomeInvincible()
-        {
-            //Неуязвимость
         }
 
         public void PermaDeath()

@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace UI.Visualization
 {
+    /// <summary>
+    /// Текстовый визуализатор с максимальным значением
+    /// </summary>
     public class TextPairVisualizer : TextVisualizer, IMaxValueHandler
     {
         [SerializeField] private Text _maxField;

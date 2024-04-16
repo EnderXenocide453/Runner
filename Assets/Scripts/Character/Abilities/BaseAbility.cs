@@ -5,6 +5,9 @@ using Zenject;
 
 namespace Character.Abilities
 {
+    /// <summary>
+    /// Базовый класс способности. Реализует интерфейс и одинаковый для всех способностей функционал
+    /// </summary>
     public abstract class BaseAbility : MonoBehaviour, IAbility
     {
         [SerializeField] protected float delay;

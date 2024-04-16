@@ -33,13 +33,12 @@ namespace LevelObjects
 
         public void Appear()
         {
-            //m_Animation.PlayAppearAnimation();
+            m_Animation.PlayAppearAnimation();
         }
 
         public void Disappear()
         {
-            DestroyLevelObject();
-            //m_Animation.PlayDisappearAnimation();
+            m_Animation.PlayDisappearAnimation();
         }
 
         public void DestroyLevelObject(bool withSound = false)

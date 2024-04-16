@@ -8,6 +8,7 @@ namespace UI.Visualization
     {
         [SerializeField] private RectTransform _container;
         [SerializeField] private Sprite _counterImage;
+        [SerializeField] private Vector2 _imageSize = new Vector2(50, 50);
 
         private List<Transform> _instancedImages = new List<Transform>();
 
@@ -43,8 +44,12 @@ namespace UI.Visualization
         private Transform CreateNewImage(Transform parent, Sprite image)
         {
             var obj = new GameObject("CounterImage", typeof(CanvasRenderer), typeof(Image));
+
             obj.GetComponent<Image>().sprite = image;
+            obj.GetComponent<RectTransform>().sizeDelta = _imageSize;
             obj.transform.SetParent(parent);
+            obj.transform.localScale = Vector3.one;
+
             return obj.transform;
         }
 

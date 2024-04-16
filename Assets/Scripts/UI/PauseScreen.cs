@@ -49,6 +49,11 @@ namespace UI
             else
                 Show();
         }
+
+        private void OnDestroy()
+        {
+            _inputManager.onPause -= Toggle;
+        }
     }
 }
 

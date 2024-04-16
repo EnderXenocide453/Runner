@@ -545,9 +545,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3562182904809824114, guid: 9419d24e64c0d4945aee8a9ba855896d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562182904809824114, guid: 9419d24e64c0d4945aee8a9ba855896d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 3738905788342838249, guid: 9419d24e64c0d4945aee8a9ba855896d, type: 3}
       propertyPath: m_Name
       value: HealthPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077177835821801508, guid: 9419d24e64c0d4945aee8a9ba855896d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077177835821801508, guid: 9419d24e64c0d4945aee8a9ba855896d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948210417847326064, guid: 9419d24e64c0d4945aee8a9ba855896d, type: 3}
+      propertyPath: _imageSize.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948210417847326064, guid: 9419d24e64c0d4945aee8a9ba855896d, type: 3}
+      propertyPath: _imageSize.y
+      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

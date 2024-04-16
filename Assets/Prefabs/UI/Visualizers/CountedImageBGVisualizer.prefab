@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container: {fileID: 3562182904809824114}
   _counterImage: {fileID: 21300000, guid: 2290c687c8154eb4ab51f632c9beffa4, type: 3}
+  _imageSize: {x: 100, y: 100}
   _backContainer: {fileID: 6077177835821801508}
   _backGroundImage: {fileID: 21300000, guid: afa7157850be3fe48bf9e08938caef52, type: 3}
 --- !u!1 &7525506741125572186

@@ -102,7 +102,7 @@ namespace InputManagement
 
         private void UseAbility()
         {
-            onUseAbility.Invoke();
+            onUseAbility?.Invoke();
         }
 
         private void EndTouch(InputAction.CallbackContext obj)

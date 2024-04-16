@@ -1,15 +1,25 @@
 ﻿using Animations;
+using GameManagement;
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace LevelObjects
 {
     [RequireComponent(typeof(AppearableObjectAnimation))]
     public class LevelObject : MonoBehaviour, IAppearableObject
     {
+        [SerializeField] private SoundType _destructionSound = SoundType.levelObjectDestruction;
         private AppearableObjectAnimation m_Animation;
+        private SoundManager m_SoundManager;
 
         public event Action onDestroyed;
+
+        [Inject]
+        public void Construct(SoundManager soundManager)
+        {
+            m_SoundManager = soundManager;
+        }
 
         private void Awake()
         {
@@ -28,12 +38,15 @@ namespace LevelObjects
 
         public void Disappear()
         {
-            Destroy();
+            DestroyLevelObject();
             //m_Animation.PlayDisappearAnimation();
         }
 
-        public void Destroy()
+        public void DestroyLevelObject(bool withSound = false)
         {
+            if (withSound)
+                m_SoundManager?.PlaySound(_destructionSound);
+
             Destroy(gameObject);
         }
 

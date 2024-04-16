@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using GameManagement;
+using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace LevelObjects
 {
@@ -8,6 +10,13 @@ namespace LevelObjects
     {
         [SerializeField] private LevelObjectInfo[] _levelObjects;
         private List<LevelObjectInfo> _nonSolidObjects;
+        private DiInstantiator _instantiator;
+
+        [Inject]
+        public void Construct(DiInstantiator instantiator)
+        {
+            _instantiator = instantiator;
+        }
 
         private void OnValidate()
         {
@@ -46,7 +55,7 @@ namespace LevelObjects
                 info = _nonSolidObjects[Random.Range(0, _nonSolidObjects.Count)];
 
             isSolid = info.IsSolid;
-            LevelObject obj = Instantiate(info.Prefab, parent).GetComponent<LevelObject>();
+            LevelObject obj = _instantiator.container.InstantiatePrefabForComponent<LevelObject>(info.Prefab, parent);
             return obj;
         }
     }

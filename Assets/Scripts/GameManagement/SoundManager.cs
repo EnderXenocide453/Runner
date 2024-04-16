@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace GameManagement
 {
@@ -10,6 +8,7 @@ namespace GameManagement
     {
         [SerializeField] private AudioSource _soundSource;
         [SerializeField] private AudioSource _musicSource;
+        [SerializeField] private SoundsHolder _soundHolder;
 
         public bool MusicMute 
         {
@@ -51,7 +50,12 @@ namespace GameManagement
             _soundSource.volume = soundInfo.soundVolume;
         }
 
-        public void PlaySound(AudioClip sound) => _soundSource.PlayOneShot(sound);
+        public void PlaySound(SoundType type)
+        {
+            if (_soundHolder.TryGetSound(type, out var sound)) {
+                _soundSource.PlayOneShot(sound);
+            }
+        }
 
         public void PlayMusicQueue(AudioClip[] clips, bool mix = false)
         {
@@ -87,5 +91,18 @@ namespace GameManagement
                 index = (index + 1) % queue.Length;
             }
         }
+    }
+
+    public enum SoundType
+    {
+        none,
+        buttonDown,
+        buttonUp,
+        rayShot,
+        levelObjectDestruction,
+        shipDestruction,
+        shipDamage,
+        collectBonus,
+        shipTurn
     }
 }

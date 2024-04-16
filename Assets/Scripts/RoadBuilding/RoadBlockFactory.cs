@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using GameManagement;
+using UnityEngine;
+using Zenject;
 
 namespace RoadBuilding
 {
@@ -6,6 +8,13 @@ namespace RoadBuilding
     public class RoadBlockFactory : ScriptableObject
     {
         [SerializeField] private GameObject[] _roadBlockPrefabs;
+        private DiInstantiator _instantiator;
+
+        [Inject]
+        public void Construct(DiInstantiator instantiator)
+        {
+            _instantiator = instantiator;
+        }
 
         public RoadBlock GenerateBlock(Vector3 position, Quaternion rotation)
         {
@@ -17,7 +26,7 @@ namespace RoadBuilding
             int id = Random.Range(0, _roadBlockPrefabs.Length);
             GameObject currentBlock = _roadBlockPrefabs[id];
 
-            return Instantiate(currentBlock, position, rotation).GetComponent<RoadBlock>();
+            return _instantiator.container.InstantiatePrefabForComponent<RoadBlock>(currentBlock, position, rotation, null);
         }
     }
 }

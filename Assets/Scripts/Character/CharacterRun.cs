@@ -1,7 +1,9 @@
+using GameManagement;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utils;
+using Zenject;
 
 namespace Character
 {
@@ -24,6 +26,7 @@ namespace Character
 
         private HashSet<MoveDirection> _availableDirections;
         private Vector3 _turnOrigin;
+        private SoundManager _soundManager;
 
         public float MaxSpeedMultiplier => _maxSpeedMultiplier;
         public float CurrentDistance => _currentDistance;
@@ -31,6 +34,12 @@ namespace Character
         public event Action onIncorrectTurn;
         public event Action<float> onDistanceChanged;
         public event Action<float> onSpeedChanged;
+
+        [Inject]
+        public void Construct(SoundManager soundManager)
+        {
+            _soundManager = soundManager;
+        }
 
         private void Start()
         {
@@ -61,6 +70,7 @@ namespace Character
             _allowRotation = true;
 
             DisableTurn();
+            _soundManager.PlaySound(SoundType.shipTurn);
         }
 
         public void EnableTurn(MoveDirection[] directions, Vector3 origin)

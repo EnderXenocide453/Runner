@@ -8,7 +8,7 @@ namespace Character.Abilities
         public override void OnHit(Collider other)
         {
             if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent<LevelObject>(out var obj))
-                obj.Destroy();
+                obj.DestroyLevelObject(withSound: true);
         }
     }
 }

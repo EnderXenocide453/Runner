@@ -22,9 +22,9 @@ namespace Character.Abilities
 
         public override void Shoot()
         {
-            Vector3 position = _shootPoint.position + _shootPoint.forward * _rayDistance;
+            Vector3 position = ShootPoint.position + ShootPoint.forward * _rayDistance;
 
-            if (Physics.SphereCast(_shootPoint.position, _rayRadius, _shootPoint.forward, out RaycastHit hit, _rayDistance, _rayMask)) {
+            if (Physics.SphereCast(ShootPoint.position, _rayRadius, ShootPoint.forward, out RaycastHit hit, _rayDistance, _rayMask)) {
                 position = hit.point;
 
                 foreach (var behaviour in _hitBehaviours)
@@ -34,7 +34,7 @@ namespace Character.Abilities
             if (_drawCoroutine != null)
                 StopCoroutine(_drawCoroutine);
 
-            _drawCoroutine = StartCoroutine(DrawRay(_shootPoint.position, position));
+            _drawCoroutine = StartCoroutine(DrawRay(ShootPoint.position, position));
         }
 
         public IEnumerator DrawRay(Vector3 start, Vector3 end)

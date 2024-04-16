@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using GameManagement;
+using UnityEngine;
+using Zenject;
 
 namespace Character
 {
@@ -9,8 +11,15 @@ namespace Character
         [SerializeField] private float _deviationSharpness = 0.5f;
         private float _currentDeviation;
         private CharacterAnimation _animation;
+        private SoundManager _soundManager;
 
         public float currentDeviation => _currentDeviation;
+
+        [Inject]
+        public void Construct(SoundManager soundManager)
+        {
+            _soundManager = soundManager;
+        }
 
         private void Awake()
         {
@@ -19,11 +28,13 @@ namespace Character
 
         public void Jump()
         {
+            _soundManager.PlaySound(SoundType.shipTurn);
             _animation.Jump();
         }
 
         public void Roll()
         {
+            _soundManager.PlaySound(SoundType.shipTurn);
             _animation.Roll();
         }
 

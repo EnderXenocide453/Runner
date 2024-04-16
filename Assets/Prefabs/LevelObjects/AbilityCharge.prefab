@@ -129,15 +129,15 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6509538935926526612}
         m_TargetAssemblyTypeName: LevelObjects.LevelObject, Assembly-CSharp
-        m_MethodName: Destroy
-        m_Mode: 1
+        m_MethodName: DestroyLevelObject
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   onDeactivated:
     m_PersistentCalls:
@@ -208,3 +208,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac496f39ff680f409a9d154820f9b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _destructionSound: 6

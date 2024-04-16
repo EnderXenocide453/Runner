@@ -8,7 +8,7 @@ namespace Character.Abilities
 
         public override void Shoot()
         {
-            Instantiate(_bullet, _shootPoint.position, _shootPoint.rotation);
+            Instantiate(_bullet, ShootPoint.position, ShootPoint.rotation);
         }
     }
 }

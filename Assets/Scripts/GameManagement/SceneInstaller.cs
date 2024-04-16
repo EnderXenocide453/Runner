@@ -16,6 +16,8 @@ namespace GameManagement
         [SerializeField] private GameObject _pauseCanvasPrefab;
         [Header("Input")]
         [SerializeField] private InputManagement.InputManager _input;
+        [Header("InjectQueue")]
+        [SerializeField] private Object[] _injectQueue;
 
         private CharacterHandler _characterHandler;
         private ScoreHandler _scoreHandler;
@@ -24,10 +26,17 @@ namespace GameManagement
 
         public override void InstallBindings()
         {
+            DiInstantiator instantiator = new DiInstantiator(Container);
+            Container.Bind<DiInstantiator>().FromInstance(instantiator).AsSingle().NonLazy();
+
             InputInstall();
             InstallUI();
             InstallPlayer();
             LoadInfo();
+
+            foreach (var item in _injectQueue) {
+                Container.QueueForInject(item);
+            }
         }
 
         private void InputInstall()
@@ -92,6 +101,16 @@ namespace GameManagement
             _deathScreen.Show();
 
             SaveManager.SaveGame(new SaveInfo() { highScore = _scoreHandler.HighScore });
+        }
+    }
+
+    public struct DiInstantiator
+    {
+        public DiContainer container { get; private set; }
+
+        public DiInstantiator(DiContainer container)
+        {
+            this.container = container;
         }
     }
 }

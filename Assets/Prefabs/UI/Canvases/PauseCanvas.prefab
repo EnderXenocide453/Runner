@@ -423,6 +423,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5004813938455881005}
     m_Modifications:
+    - target: {fileID: 2005594908691522092, guid: a5bd43946f2e92d43886bcd6ffb3ded8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763195059469646281, guid: a5bd43946f2e92d43886bcd6ffb3ded8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3827700129186509235, guid: a5bd43946f2e92d43886bcd6ffb3ded8, type: 3}
       propertyPath: m_Name
       value: SettingsHolder

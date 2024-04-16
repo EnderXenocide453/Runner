@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6797222982970664286}
   - component: {fileID: -5133041571562660579}
   - component: {fileID: 3840213156711598199}
+  - component: {fileID: 3493315559610204927}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -78,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneLoader: {fileID: 3840213156711598199}
   _soundManager: {fileID: 8774443334723916460}
+  _input: {fileID: 3493315559610204927}
 --- !u!114 &3840213156711598199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +92,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d87f022d3e3eb64181d3f52e5c6cc9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3493315559610204927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2493032227440124693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933186c288b2da24c96afa02cbcf842a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minDeviationSensitivity: 1
+  _maxDeviationSensitivity: 5
+  _swipeDetector:
+    _swipeMaxTime: 2
+    _swipeMinLenght: 0.5
+  _multitapDetector:
+    _maxMultiTapDelay: 1
 --- !u!1 &5246961874141908971
 GameObject:
   m_ObjectHideFlags: 0

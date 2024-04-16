@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3022042217042722737}
   - component: {fileID: 892025707964628792}
   - component: {fileID: 1692896673369274599}
-  - component: {fileID: 2097863063429308787}
   - component: {fileID: 1326856785514141523}
   m_Layer: 0
   m_Name: SceneContext
@@ -84,32 +83,13 @@ MonoBehaviour:
   _playerCanvasPrefab: {fileID: 5787827793418699829, guid: b94c910c4af3fb2448882127f3b34c4a, type: 3}
   _deathCanvasPrefab: {fileID: 4476332323297384513, guid: 73bf732fc2733534ba9602600751e9ef, type: 3}
   _pauseCanvasPrefab: {fileID: 4695610308434749367, guid: 45019f02e87b8174d81c2bbb01ab2bdc, type: 3}
-  _input: {fileID: 2097863063429308787}
+  _input: {fileID: 0}
   _injectQueue:
   - {fileID: 11400000, guid: 744a81ab14062e247ba2065a54183e23, type: 2}
   - {fileID: 11400000, guid: 49f63b0bc8b2e6949b3b75827d077333, type: 2}
   - {fileID: 11400000, guid: 13365b101eba7c642bd14e4c5f0d91c2, type: 2}
   - {fileID: 11400000, guid: 19f2cee3be689e44e93098c531ace46a, type: 2}
   - {fileID: 11400000, guid: 525e5da21af35f3488aa9604d8aace80, type: 2}
---- !u!114 &2097863063429308787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4168015692983434526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 933186c288b2da24c96afa02cbcf842a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mouseSensitivity: 1
-  _accelerometrSensitivity: 1.5
-  _swipeDetector:
-    _swipeMaxTime: 2
-    _swipeMinLenght: 0.5
-  _multitapDetector:
-    _maxMultiTapDelay: 1
 --- !u!114 &1326856785514141523
 MonoBehaviour:
   m_ObjectHideFlags: 0

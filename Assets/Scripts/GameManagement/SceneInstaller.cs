@@ -14,8 +14,6 @@ namespace GameManagement
         [SerializeField] private GameObject _playerCanvasPrefab;
         [SerializeField] private GameObject _deathCanvasPrefab;
         [SerializeField] private GameObject _pauseCanvasPrefab;
-        [Header("Input")]
-        [SerializeField] private InputManagement.InputManager _input;
         [Header("InjectQueue")]
         [SerializeField] private Object[] _injectQueue;
 
@@ -29,7 +27,6 @@ namespace GameManagement
             DiInstantiator instantiator = new DiInstantiator(Container);
             Container.Bind<DiInstantiator>().FromInstance(instantiator).AsSingle().NonLazy();
 
-            InputInstall();
             InstallUI();
             InstallPlayer();
             LoadInfo();
@@ -37,11 +34,6 @@ namespace GameManagement
             foreach (var item in _injectQueue) {
                 Container.QueueForInject(item);
             }
-        }
-
-        private void InputInstall()
-        {
-            Container.Bind<InputManagement.InputManager>().FromInstance(_input).AsSingle().NonLazy();
         }
 
         private void InstallPlayer()

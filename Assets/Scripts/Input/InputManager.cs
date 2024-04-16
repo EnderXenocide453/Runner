@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameManagement;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
@@ -7,12 +8,18 @@ namespace InputManagement
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] float _mouseSensitivity = 1f;
-        [SerializeField] float _accelerometrSensitivity = 1.5f;
+        [SerializeField] float _minDeviationSensitivity = 1, _maxDeviationSensitivity = 5;
         [SerializeField] SwipeDetector _swipeDetector;
         [SerializeField] MultitapDetector _multitapDetector;
 
         private PlayerControl _playerControl;
+        private float _deviationSensitivity;
+
+        public float DeviationSensitivity 
+        {
+            get => Mathf.InverseLerp(_minDeviationSensitivity, _maxDeviationSensitivity, _deviationSensitivity);
+            set => _deviationSensitivity = Mathf.Lerp(_minDeviationSensitivity, _maxDeviationSensitivity, value); 
+        }
 
         public event Action<MoveDirection> onMoveInput;
         public event Action onUseAbility;
@@ -59,6 +66,35 @@ namespace InputManagement
             _multitapDetector.onMultiTap += UseAbility;
         }
 
+        public float GetDeviation()
+        {
+            if (SystemInfo.deviceType == DeviceType.Handheld) {
+                return Input.acceleration.x * _deviationSensitivity;
+            }
+
+            float deviation = _playerControl.PCmap.MousePosition.ReadValue<Vector2>().x;
+            deviation = Mathf.InverseLerp(0, Screen.width, deviation) * 2 - 1;
+            return deviation * _deviationSensitivity;
+        }
+
+        public void SetConfig(InputInfo info)
+        {
+            DeviationSensitivity = info.deviationSensitivity;
+        }
+
+        public InputInfo GetConfig()
+        {
+            return new InputInfo
+            {
+                deviationSensitivity = DeviationSensitivity
+            };
+        }
+
+        private void HandleMoveInput(MoveDirection direction)
+        {
+            onMoveInput?.Invoke(direction);
+        }
+
         private void OnPause(InputAction.CallbackContext obj)
         {
             onPause?.Invoke();
@@ -67,22 +103,6 @@ namespace InputManagement
         private void UseAbility()
         {
             onUseAbility.Invoke();
-        }
-
-        public float GetDeviation()
-        {
-            if (SystemInfo.deviceType == DeviceType.Handheld) {
-                return Input.acceleration.x * _accelerometrSensitivity;
-            }
-
-            float deviation = _playerControl.PCmap.MousePosition.ReadValue<Vector2>().x;
-            deviation = Mathf.InverseLerp(0, Screen.width, deviation) * 2 - 1;
-            return deviation * _mouseSensitivity;
-        }
-
-        private void HandleMoveInput(MoveDirection direction)
-        {
-            onMoveInput?.Invoke(direction);
         }
 
         private void EndTouch(InputAction.CallbackContext obj)

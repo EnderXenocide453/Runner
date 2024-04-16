@@ -34,6 +34,10 @@ namespace GameManagement
                     musicVolume = 1,
                     isSoundActive = true,
                     soundVolume = 1
+                },
+                inputInfo = new InputInfo
+                {
+                    deviationSensitivity = 1
                 }
             };
         }

@@ -1,5 +1,6 @@
 using GameManagement;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utils;
@@ -16,6 +17,7 @@ namespace Character
         [SerializeField] private AnimationCurve _speedCurve;
 
         [SerializeField] private float _rotateSpeed = 180;
+        [SerializeField] private float _positionCorrectionSpeed = 7.5f;
 
         private float _currentDistance;
         private float _currentSpeed;
@@ -66,11 +68,11 @@ namespace Character
             Quaternion angle = Utils.Utils.GetRotationFromDirection(direction);
 
             _direction = angle * _direction;
-            transform.position = _turnOrigin;
             _allowRotation = true;
 
             DisableTurn();
             _soundManager.PlaySound(SoundType.shipTurn);
+            StartCoroutine(MoveToPosition(_turnOrigin));
         }
 
         public void EnableTurn(MoveDirection[] directions, Vector3 origin)
@@ -121,6 +123,19 @@ namespace Character
             }
 
             _body.MoveRotation(Quaternion.RotateTowards(transform.rotation, currQuaternion, _rotateSpeed * Time.fixedDeltaTime));
+        }
+
+        private IEnumerator MoveToPosition(Vector3 position)
+        {
+            Vector3 offset = position - transform.position;
+
+            while (offset.magnitude > 0.01f) {
+                Vector3 delta = Vector3.MoveTowards(Vector3.zero, offset, Time.deltaTime * _positionCorrectionSpeed);
+                offset -= delta;
+                transform.position += delta;
+
+                yield return null;
+            }
         }
     }
 }

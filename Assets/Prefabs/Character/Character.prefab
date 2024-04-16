@@ -265,6 +265,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _rotateSpeed: 360
+  _positionCorrectionSpeed: 7.5
 --- !u!114 &1684087959144537600
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -49,5 +49,11 @@ namespace InputManagement
             float deviation = _inputManager.GetDeviation();
             _character.Activity.Deviate(deviation);
         }
+
+        private void OnDestroy()
+        {
+            _inputManager.onMoveInput -= OnCharacterMoveInput;
+            _inputManager.onUseAbility -= OnUseAbility;
+        }
     }
 }

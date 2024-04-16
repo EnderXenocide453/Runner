@@ -1,5 +1,8 @@
 ﻿namespace UI.Visualization
 {
+    /// <summary>
+    /// Визуализатор, управляющий другими визуализаторами
+    /// </summary>
     public class ComplexVisualizer : ValueVisualizer, IMaxValueHandler
     {
         private ValueVisualizer[] _childVisualizers;

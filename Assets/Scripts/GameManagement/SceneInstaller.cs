@@ -86,7 +86,7 @@ namespace GameManagement
 
         private void OnPlayerDeath()
         {
-            int score = (int)_characterHandler.CharacterRun.CurrentDistance;
+            int score = (int)_characterHandler.CharacterDirection.CharacterMove.CurrentDistance;
 
             _scoreHandler.SetHighScore(score);
             _deathScreen.ShowHighScore(_scoreHandler.HighScore, score);

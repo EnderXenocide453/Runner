@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Animations
 {
+    /// <summary>
+    /// Вращающийся объект
+    /// </summary>
     public class Rotator : MonoBehaviour
     {
         [SerializeField] private Vector3 _axis;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Character.Abilities
 {
+    /// <summary>
+    /// Класс стрельбы лучом
+    /// </summary>
     [RequireComponent(typeof(LineRenderer))]
     public class RayShooter : Shooter
     {
@@ -24,6 +27,7 @@ namespace Character.Abilities
         {
             Vector3 position = ShootPoint.position + ShootPoint.forward * _rayDistance;
 
+            //Используем SphereCast для облегчения наведения на препятствие
             if (Physics.SphereCast(ShootPoint.position, _rayRadius, ShootPoint.forward, out RaycastHit hit, _rayDistance, _rayMask)) {
                 position = hit.point;
 

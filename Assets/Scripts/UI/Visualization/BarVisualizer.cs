@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 namespace UI.Visualization
 {
+    //Визуализатор в виде полосы прогресса
     public class BarVisualizer : ValueVisualizer, IMaxValueHandler
     {
         [SerializeField] private Image _bar;

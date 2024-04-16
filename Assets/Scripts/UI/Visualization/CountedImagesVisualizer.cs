@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace UI.Visualization
 {
+    /// <summary>
+    /// Визуализация целого числа в виде количества изображений
+    /// </summary>
     public class CountedImagesVisualizer : ValueVisualizer
     {
         [SerializeField] private RectTransform _container;

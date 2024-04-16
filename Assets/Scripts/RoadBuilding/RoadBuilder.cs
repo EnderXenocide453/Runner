@@ -4,6 +4,9 @@ using Random = UnityEngine.Random;
 
 namespace RoadBuilding
 {
+    /// <summary>
+    /// Логика построения дороги
+    /// </summary>
     [Serializable]
     public class RoadBuilder
     {

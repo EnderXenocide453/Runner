@@ -3,6 +3,9 @@ using Zenject;
 
 namespace GameManagement
 {
+    /// <summary>
+    /// Контейнер фоновой музыки сцены
+    /// </summary>
     public class MusicHandler : MonoBehaviour
     {
         [SerializeField] private AudioClip[] _music;

@@ -4,6 +4,9 @@ using Zenject;
 
 namespace Character
 {
+    /// <summary>
+    /// Класс, управляющий перемещением персонажа перпендикулярно направлению движения
+    /// </summary>
     [RequireComponent(typeof(CharacterAnimation))]
     public class CharacterActivities : MonoBehaviour
     {

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Character
 {
+    /// <summary>
+    /// Класс, контроллирующий использование способностей персонажем
+    /// </summary>
     public class CharacterAbility : MonoBehaviour
     {
         [SerializeField] private BaseAbility _ability;

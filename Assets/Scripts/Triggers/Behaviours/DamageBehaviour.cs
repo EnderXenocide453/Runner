@@ -2,6 +2,9 @@
 
 namespace Character.Abilities
 {
+    /// <summary>
+    /// Поведение нанесения урона
+    /// </summary>
     public class DamageBehaviour : CollisionBehaviour
     {
         [SerializeField] private int _damage = 1;

@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace LevelObjects
 {
+    /// <summary>
+    /// Спавнер игровых объектов.
+    /// Используя фабрику генерирует в определенных точках наборы объектов
+    /// </summary>
     public class LevelObjectSpawner : MonoBehaviour, IAppearableObject
     {
         [SerializeField] private SpawnPoint[] _spawnPoints;

@@ -6,6 +6,9 @@ using Utils;
 
 namespace InputManagement
 {
+    /// <summary>
+    /// Менеджер ввода. Отлавливает события ввода, управляет активными картами событий
+    /// </summary>
     public class InputManager : MonoBehaviour
     {
         [SerializeField] float _minDeviationSensitivity = 1, _maxDeviationSensitivity = 5;

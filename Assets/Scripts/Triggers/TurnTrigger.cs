@@ -13,7 +13,7 @@ namespace Triggers
             //Передача возможности повернуть в систему, за это отвечающую
 
             //Заглушка
-            if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent<CharacterRun>(out var movement)) {
+            if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent<CharacterDirection>(out var movement)) {
                 movement.EnableTurn(_directions, transform.position);
             }
         }
@@ -21,7 +21,7 @@ namespace Triggers
         protected override void Deactivate(Collider other)
         {
             //Обработка проигнорированного поворота
-            if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent<CharacterRun>(out var movement)) {
+            if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent<CharacterDirection>(out var movement)) {
                 movement.DisableTurn();
             }
         }

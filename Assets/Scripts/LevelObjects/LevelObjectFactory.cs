@@ -5,6 +5,11 @@ using Zenject;
 
 namespace LevelObjects
 {
+    /// <summary>
+    /// Фабрика игровых объектов. Выполнена в качестве наследника ScriptableObject чтобы в дальнейшем
+    /// реализовать возможность смены заранее подготовленных фабрик для разнообразия игрового процесса.
+    /// Например, для увеличения сложности ловушек со временем
+    /// </summary>
     [CreateAssetMenu(fileName = "New Level Objects Factory", menuName = "LevelObjects/LevelObjectFactory")]
     public class LevelObjectFactory : ScriptableObject
     {
@@ -35,6 +40,7 @@ namespace LevelObjects
             int solidCount = 0;
 
             for (int i = 0; i < objects.Length; i++) {
+                //Если это последний элемент и все предыдущие были сплошными, запретить использование сплошного
                 bool allowSolid = solidCount + 1 < objects.Length;
                 objects[i] = CreateRandomObject(connectors[i], allowSolid, out bool isSolid);
 

@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace RoadBuilding
 {
+    /// <summary>
+    /// Логика блока дороги
+    /// </summary>
     [RequireComponent(typeof(AppearableObjectAnimation))]
     public class RoadBlock : MonoBehaviour, IAppearableObject
     {

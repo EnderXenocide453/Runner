@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Character
 {
+    /// <summary>
+    /// Визуализация статистики персонажа на экране
+    /// </summary>
     public class CharacterInfoVisualizer : MonoBehaviour
     {
         [SerializeField] private ValueVisualizer _healthVisualizer;

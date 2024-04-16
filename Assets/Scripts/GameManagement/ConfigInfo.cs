@@ -1,5 +1,8 @@
 ﻿namespace GameManagement
 {
+    /// <summary>
+    /// Информация для сохранения настроек
+    /// </summary>
     [System.Serializable]
     public struct ConfigInfo
     {
@@ -7,6 +10,9 @@
         public InputInfo inputInfo;
     }
 
+    /// <summary>
+    /// Информация о настройках звука
+    /// </summary>
     [System.Serializable]
     public struct SoundInfo
     {
@@ -16,6 +22,9 @@
         public float soundVolume;
     }
 
+    /// <summary>
+    /// Информация о настройках ввода
+    /// </summary>
     [System.Serializable]
     public struct InputInfo
     {

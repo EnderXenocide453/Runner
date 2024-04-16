@@ -1,15 +1,14 @@
-using GameManagement;
-using System;
+п»їusing System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Utils;
-using Zenject;
 
 namespace Character
 {
+    /// <summary>
+    /// Р›РѕРіРёРєР° РїРµСЂРµРјРµС‰РµРЅРёСЏ Рё РїРѕРІРѕСЂРѕС‚Р° РїРµСЂСЃРѕРЅР°Р¶Р°
+    /// </summary>
     [RequireComponent(typeof(Rigidbody))]
-    public class CharacterRun : MonoBehaviour
+    public class CharacterMove : MonoBehaviour
     {
         [SerializeField] private float _minSpeedMultiplier = 1, _maxSpeedMultiplier = 10;
         [SerializeField] private float _speed = 2;
@@ -26,22 +25,11 @@ namespace Character
         private Rigidbody _body;
         private Vector3 _direction = Vector3.forward;
 
-        private HashSet<MoveDirection> _availableDirections;
-        private Vector3 _turnOrigin;
-        private SoundManager _soundManager;
-
         public float MaxSpeedMultiplier => _maxSpeedMultiplier;
         public float CurrentDistance => _currentDistance;
 
-        public event Action onIncorrectTurn;
         public event Action<float> onDistanceChanged;
         public event Action<float> onSpeedChanged;
-
-        [Inject]
-        public void Construct(SoundManager soundManager)
-        {
-            _soundManager = soundManager;
-        }
 
         private void Start()
         {
@@ -57,38 +45,14 @@ namespace Character
             LookAtDirection();
         }
 
-        public void TurnTo(MoveDirection direction)
+        public void SetDirection(Vector3 direction) => _direction = direction;
+
+        public void MoveTo(Vector3 position)
         {
-            if (_availableDirections == null || !_availableDirections.Contains(direction)) {
-                //Обрабатываем врезание в стену
-                onIncorrectTurn?.Invoke();
-                return;
-            }
-
-            Quaternion angle = Utils.Utils.GetRotationFromDirection(direction);
-
-            _direction = angle * _direction;
-            _allowRotation = true;
-
-            DisableTurn();
-            _soundManager.PlaySound(SoundType.shipTurn);
-            StartCoroutine(MoveToPosition(_turnOrigin));
+            StartCoroutine(MoveToPosition(position));
         }
 
-        public void EnableTurn(MoveDirection[] directions, Vector3 origin)
-        {
-            _availableDirections = new HashSet<MoveDirection>(directions);
-            _turnOrigin = origin;
-
-            Debug.Log($"Enabled {directions}");
-        }
-
-        public void DisableTurn()
-        {
-            _availableDirections.Clear();
-
-            Debug.Log($"Disabled");
-        }
+        public void AllowRotation() => _allowRotation = true;
 
         private void CalculateCurrentSpeed()
         {
@@ -102,7 +66,7 @@ namespace Character
 
         private void CalculateDistance()
         {
-            //Компенсация сдвига по y чтобы не учитывались прыжки
+            //РљРѕРјРїРµРЅСЃР°С†РёСЏ СЃРґРІРёРіР° РїРѕ y С‡С‚РѕР±С‹ РЅРµ СѓС‡РёС‚С‹РІР°Р»РёСЃСЊ РїСЂС‹Р¶РєРё
             _oldPosition.y = transform.position.y;
 
             _currentDistance += Vector3.Distance(_oldPosition, transform.position);

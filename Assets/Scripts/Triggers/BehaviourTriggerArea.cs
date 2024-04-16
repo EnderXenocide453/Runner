@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Triggers
 {
+    /// <summary>
+    /// Триггер, вызывающий поведения
+    /// </summary>
     public class BehaviourTriggerArea : TriggerArea
     {
         [SerializeField] private CollisionBehaviour[] _activateBehaviours;

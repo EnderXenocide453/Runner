@@ -6,6 +6,9 @@ using Zenject;
 
 namespace InputManagement
 {
+    /// <summary>
+    /// Преобразователь данных ввода в инструкции персонажу
+    /// </summary>
     public class CharacterInput : MonoBehaviour
     {
         private CharacterHandler _character;
@@ -34,7 +37,7 @@ namespace InputManagement
         protected void OnCharacterMoveInput(MoveDirection direction)
         {
             if (direction == MoveDirection.Right || direction == MoveDirection.Left) {
-                _character.CharacterRun.TurnTo(direction);
+                _character.CharacterDirection.TurnTo(direction);
             }
             else if (direction == MoveDirection.Forward) {
                 _character.Activity.Jump();

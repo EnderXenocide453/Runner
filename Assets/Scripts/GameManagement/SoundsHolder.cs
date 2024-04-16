@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace GameManagement
 {
+    /// <summary>
+    /// Хранилище списка звуков. Преобразует список в словарь для дальнейшего взаимодействия
+    /// </summary>
     [System.Serializable]
     public class SoundsHolder
     {
